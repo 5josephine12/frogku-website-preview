@@ -38,7 +38,7 @@ function renderArticle(initial=false){
  selectSection(sectionSelect.value);
  sectionControl?.sync();
  if(!initial&&previousTop!==undefined&&previousTop<innerHeight&&scrollY>0){scrollTo({top:scrollY+next[index].getBoundingClientRect().top-previousTop,behavior:'instant'});}
- document.querySelectorAll('a[href]').forEach(a=>{const url=new URL(a.getAttribute('href'),location.href);if(url.origin!==location.origin||!/^\/(privacy|terms)\.html$/.test(url.pathname))return;url.searchParams.set('lang',getLang());a.href=url.pathname+url.search+url.hash;if(url.pathname===location.pathname)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+ document.querySelectorAll('a[href]').forEach(a=>{const url=new URL(a.getAttribute('href'),location.href);if(url.origin!==location.origin||!/^(privacy|terms)\.html$/.test(url.pathname.split('/').pop()))return;url.searchParams.set('lang',getLang());a.href=url.pathname+url.search+url.hash;if(url.pathname===location.pathname)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
 }
 translate();renderArticle(true);mountWordmark();mountStickyTables();
 const languageSelect=$('#language');
