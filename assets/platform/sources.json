@@ -1,0 +1,14 @@
+[
+  {
+    "name": "android",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/android.svg",
+    "license": "CC0-1.0",
+    "use": "Platform brand mark; all UI controls use Lucide 1.60.0"
+  },
+  {
+    "name": "apple",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/apple.svg",
+    "license": "CC0-1.0",
+    "use": "Platform brand mark; all UI controls use Lucide 1.60.0"
+  }
+]

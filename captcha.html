@@ -1,0 +1,138 @@
+<!doctype html>
+<!--
+  App 里「获取验证码」前的人机验证承载页（阿里云验证码 2.0，V3 架构，Web SDK）。线上地址 https://frogku.com/captcha.html，
+  App 用 WebView（webview_flutter）打开，参数都由服务端 /api/app/config 的 captcha 下发后拼在查询串里：
+    ?prefix=<身份标>&scene=<场景 ID>&region=sgp|cn&lang=zh|en|id
+  结果经 JS 通道 FrogCaptcha 回传给 Flutter（JSON 字符串）：
+    {"type":"ready"}                           SDK 初始化好了
+    {"type":"success","param":"..."}           验证通过，param = captchaVerifyParam，App 原样随 /api/app/auth/code 提交
+    {"type":"fail"}                            这次没通过（SDK 自己会刷新重来，只记日志）
+    {"type":"close"}                           用户关掉了验证弹窗
+    {"type":"error","code":"...","msg":"..."}  初始化 / 资源加载失败、参数缺失
+  - 官方要求 AliyunCaptcha.js 动态引入、不能下载到本地（否则验证码无法更新），所以这页每次都从 o.alicdn.com 拉
+  - 无痕验证：正常用户直接 success（几乎无感）；可疑时 SDK 自己在页面里弹出滑块 / 一点即过，通过后同样 success
+  - 发布：site/build.py 原样复制进 frogku-web 镜像，改了发一次 web（GitHub Actions Deploy，component=web），见 server/HANDOFF-server.md「人机验证」
+  - 这页没有秘密：prefix / 场景 ID 本来就是公开放在网页里的，真正的核验在服务端（captcha.py）
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Frogku</title>
+<style>
+  :root { color-scheme: light; --fg: #1f2420; --muted: #6b6e68; --brand: #2f9a52; --bg: #ffffff; }
+  html, body { height: 100%; margin: 0; background: var(--bg); color: var(--fg);
+    font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", Roboto, sans-serif; }
+  .wrap { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    padding: 0 16px; box-sizing: border-box; text-align: center; }
+  .spin { width: 28px; height: 28px; border-radius: 50%; border: 3px solid #d9e9de; border-top-color: var(--brand);
+    animation: r 0.9s linear infinite; }
+  @keyframes r { to { transform: rotate(360deg); } }
+  #msg { font-size: 15px; color: var(--muted); }
+  #captcha-button { display: none; border: 0; border-radius: 10px; background: var(--brand); color: #fff; font-size: 15px;
+    font-weight: 600; padding: 12px 22px; font-family: inherit; }
+  #captcha-button.show { display: inline-block; }
+</style>
+<meta name="frogku-static-preview" content="true">
+</head>
+<body>
+<div class="wrap">
+  <div class="spin" id="spin"></div>
+  <div id="msg"></div>
+  <!-- SDK 的触发按钮。正常情况下页面自己触发（无痕验证不用点）；过了几秒还没动静才露出来让用户点一下（真实点击） -->
+  <button id="captcha-button" type="button"></button>
+</div>
+<div id="captcha-element"></div>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var lang = (q.get('lang') || 'en').toLowerCase();
+  var T = {
+    zh: { checking: '正在进行安全验证…', tap: '点此开始验证', failed: '安全验证加载失败，请检查网络后重试' },
+    en: { checking: 'Running a quick security check…', tap: 'Tap to start verification', failed: "Couldn't load the security check. Check your network and try again" },
+    id: { checking: 'Sedang verifikasi keamanan…', tap: 'Klik untuk mulai verifikasi', failed: 'Verifikasi keamanan gagal dimuat. Cek jaringan lalu coba lagi' }
+  }[lang] || null;
+  if (!T) { lang = 'en'; T = { checking: 'Running a quick security check…', tap: 'Tap to start verification', failed: "Couldn't load the security check. Check your network and try again" }; }
+  // 阿里云的语言代码：简体中文 cn、英文 en、印尼语 in
+  var sdkLang = { zh: 'cn', en: 'en', id: 'in' }[lang];
+  var msg = document.getElementById('msg'), btn = document.getElementById('captcha-button');
+  msg.textContent = T.checking;
+  btn.textContent = T.tap;
+
+  function post(o) {
+    try {
+      if (window.FrogCaptcha && window.FrogCaptcha.postMessage) window.FrogCaptcha.postMessage(JSON.stringify(o));
+    } catch (e) {}
+  }
+  var finished = false;
+  function fatal(code, m) {
+    if (finished) return;
+    finished = true;
+    document.getElementById('spin').style.display = 'none';
+    btn.className = '';
+    msg.textContent = T.failed;
+    post({ type: 'error', code: String(code || ''), msg: String(m || '') });
+  }
+
+  var prefix = q.get('prefix'), scene = q.get('scene'), region = q.get('region') || 'sgp';
+  if (!prefix || !scene) return fatal('bad_params', 'prefix / scene missing');
+  if (region !== 'sgp' && region !== 'cn') return fatal('bad_params', 'region must be sgp or cn');
+
+  window.AliyunCaptchaConfig = { region: region, prefix: prefix };
+  var instance = null, started = false;
+
+  function start() {
+    if (started || !instance) return;
+    started = true;
+    // 无痕场景用 startTracelessVerification；其他形态（滑块等）没有这个方法或会抛错，退回 show() 直接弹出
+    try {
+      if (typeof instance.startTracelessVerification === 'function') { instance.startTracelessVerification(); return; }
+    } catch (e) {}
+    try { if (typeof instance.show === 'function') instance.show(); } catch (e) {}
+  }
+
+  function init() {
+    var w = Math.max(320, Math.min(360, window.innerWidth - 32));
+    window.initAliyunCaptcha({
+      SceneId: scene,
+      mode: 'popup', // 无痕验证不支持嵌入式
+      element: '#captcha-element',
+      button: '#captcha-button',
+      language: sdkLang,
+      slideStyle: { width: w, height: 40 },
+      timeout: 8000,
+      disableMaskClick: true, // 点遮罩不关；用户要放弃就关 App 里的弹层
+      success: function (param) {
+        if (finished) return;
+        finished = true;
+        post({ type: 'success', param: param });
+      },
+      fail: function (r) { post({ type: 'fail', code: r && r.code ? String(r.code) : '' }); },
+      onError: function (e) { fatal(e && e.code, e && e.msg); },
+      onClose: function (reason) {
+        if (reason === 'userDismiss' && !finished) post({ type: 'close' });
+      },
+      getInstance: function (inst) {
+        instance = inst;
+        post({ type: 'ready' });
+        // 资源加载需要一点时间，稍等再触发；过 5 秒还没结果就露出按钮让用户自己点（真实点击）
+        setTimeout(start, 400);
+        setTimeout(function () { if (!finished) btn.className = 'show'; }, 5000);
+      }
+    });
+  }
+
+  // 官方要求动态引入 SDK（不能本地化、不能重复引入）
+  var s = document.createElement('script');
+  s.src = 'https://o.alicdn.com/captcha-frontend/aliyunCaptcha/AliyunCaptcha.js';
+  s.onload = function () {
+    if (typeof window.initAliyunCaptcha !== 'function') return fatal('sdk_missing', 'initAliyunCaptcha not found');
+    try { init(); } catch (e) { fatal('init_exception', e && e.message); }
+  };
+  s.onerror = function () { fatal('sdk_load_failed', 'AliyunCaptcha.js'); };
+  document.head.appendChild(s);
+})();
+</script>
+</body>
+</html>

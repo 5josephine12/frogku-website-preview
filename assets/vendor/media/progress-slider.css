@@ -1,0 +1,15 @@
+/* Settings slider: 320×40 capsule with a 6px vertical marker.
+   Video progress uses the shared cap-height rail in playback-progress.css. */
+.ply{position:relative;box-sizing:border-box;font-family:var(--font-ui);color:var(--ink)}
+.slo{box-sizing:border-box;width:320px;font-family:var(--font-ui);--slider-track:var(--brand-soft);--slider-fill:color-mix(in srgb,var(--brand-ink) 45%,var(--brand-soft));--slider-marker:var(--brand-ink)}
+.slo .slo-track{position:relative;height:40px;border-radius:var(--slo-r,14px);overflow:hidden;background:var(--slider-track);cursor:ew-resize;touch-action:none}
+.slo-track::before{content:"";position:absolute;inset:0;border:1px solid transparent;border-radius:inherit;pointer-events:none}
+.slo .slo-track:focus-visible:not(:where(:root[data-input-modality=pointer] *)){outline:2px solid var(--brand-ink);outline-offset:4px;box-shadow:none}
+.slo-fill{background:var(--fill-slab,var(--board))}
+.slo .slo-fill{position:absolute;inset:0 auto 0 0;width:62%;background:var(--slider-fill);clip-path:polygon(0 0,calc(100% + var(--lean,0px)) 0,calc(100% - var(--lean,0px)) 100%,0 100%)}
+.slo .slo-knob{position:absolute;inset:0 auto 0 62%;width:6px;height:100%;margin-left:-3px;border-radius:999px;background:var(--slider-marker);pointer-events:none}
+.slo-track[aria-disabled=true]{cursor:default;pointer-events:none}
+.slo-track[aria-disabled=true] .slo-knob{opacity:.45}
+.slo-video-progress{display:flex;align-items:center;justify-content:center;gap:16px;width:100%;max-width:calc(320px + 16px + 13ch);font:11px var(--font-numeric,"Geist Mono",monospace)}
+.slo-video-progress>:is(.slo,.playback-progress){flex:1 1 320px;min-width:0;max-width:320px}
+.slo-time{flex:none;width:13ch;white-space:nowrap;color:var(--ink);font:11px/20px var(--font-numeric,"Geist Mono",monospace);font-variant-numeric:tabular-nums}

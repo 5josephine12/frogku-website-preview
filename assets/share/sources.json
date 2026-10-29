@@ -1,0 +1,21 @@
+{
+  "width": 1200,
+  "height": 630,
+  "duration_seconds": 8,
+  "audio": false,
+  "video": "frogku-share-v2.mp4",
+  "poster": "frogku-share-v2.png",
+  "brandField": "#58DF35",
+  "colorProfile": "sRGB still / BT.709 video",
+  "sources": [
+    "../video/task-masak.mp4"
+  ],
+  "phoneFrame": "phone-frame.png",
+  "phoneMarkup": "phone-frame-source.html",
+  "artwork": "../frog.svg",
+  "fonts": [
+    "../fonts/inter-500.woff2",
+    "../fonts/inter-600.woff2"
+  ],
+  "notes": "The complete homepage phone UI surrounds the same cooking footage used by its Memasak card. Background color is read directly from site.css. Versioned URLs refresh sharing caches."
+}

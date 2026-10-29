@@ -1,0 +1,15 @@
+/* Shared selection mark for actual table inputs and the assignee interaction. */
+.selection-mark,.pik-mark{position:relative;display:grid;place-items:center;flex:none;width:18px;height:18px;border-radius:6px;background:transparent;box-shadow:inset 0 0 0 1.5px var(--selection-line);color:var(--selection-on);transition:background-color var(--ui-duration-feedback,180ms) var(--ui-ease,cubic-bezier(.22,1,.36,1)),box-shadow var(--ui-duration-feedback,180ms) var(--ui-ease,cubic-bezier(.22,1,.36,1)),transform 180ms cubic-bezier(.22,1,.36,1)}
+.selection-mark svg,.pik-mark svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.selection-tick,.selection-dash{transform-origin:12px 12px;transform:scale(.6);opacity:0;transition:opacity 160ms ease,transform 220ms cubic-bezier(.22,1,.36,1)}
+.checkbox-target input:checked+.selection-mark,.checkbox-target input:indeterminate+.selection-mark,.pik-row[data-on] .pik-mark{background:var(--selection-fill);box-shadow:inset 0 0 0 1.5px var(--selection-fill)}
+.checkbox-target input:checked:not(:indeterminate)+.selection-mark .selection-tick,.checkbox-target input:indeterminate+.selection-mark .selection-dash,.pik-row[data-on] .selection-tick{opacity:1;transform:scale(1)}
+.checkbox-target{position:relative;isolation:isolate}
+.checkbox-target input[type=checkbox]{appearance:none;position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer;z-index:1}
+.checkbox-target:active .selection-mark,.pik-row:active .pik-mark,.selection-row:active .selection-mark,.selection-control:active .selection-mark{transform:scale(.94)}
+.selection-control[aria-pressed=true] .selection-mark{background:var(--selection-fill);box-shadow:inset 0 0 0 1.5px var(--selection-fill)}
+.selection-control[aria-pressed=true] .selection-tick{opacity:1;transform:scale(1)}
+.checkbox-target:has(input:focus-visible:not(:where(:root[data-input-modality=pointer] *))){outline:none}
+.checkbox-target:has(input:focus-visible:not(:where(:root[data-input-modality=pointer] *))) .selection-mark,.pik-row:focus-visible:not(:where(:root[data-input-modality=pointer] *)) .pik-mark{outline:2px solid var(--focus,var(--selection-fill));outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.selection-mark,.pik-mark,.selection-tick,.selection-dash{transition:none}}
+@media(forced-colors:active){.selection-mark,.pik-mark{outline:1px solid ButtonText}.checkbox-target input:checked+.selection-mark,.checkbox-target input:indeterminate+.selection-mark,.pik-row[data-on] .pik-mark{background:Highlight;color:HighlightText;forced-color-adjust:none}}

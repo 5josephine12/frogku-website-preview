@@ -1,0 +1,62 @@
+[
+  {
+    "task": "masak",
+    "source": "https://frogku.id/assets/video/task-masak.mp4",
+    "output": "video/task-masak.mp4",
+    "output_pixels": [
+      960,
+      1200
+    ],
+    "source_pixels": [
+      480,
+      600
+    ],
+    "method": "Lanczos 2x, light luma sharpening; no frame interpolation",
+    "bytes": 3773182
+  },
+  {
+    "task": "cukur",
+    "source": "https://frogku.id/assets/video/task-cukur.mp4",
+    "output": "video/task-cukur.mp4",
+    "output_pixels": [
+      960,
+      1200
+    ],
+    "source_pixels": [
+      480,
+      600
+    ],
+    "method": "Lanczos 2x, light luma sharpening; no frame interpolation",
+    "bytes": 4252495
+  },
+  {
+    "task": "jemur",
+    "source": "https://frogku.id/assets/video/task-jemur.mp4",
+    "output": "video/task-jemur.mp4",
+    "output_pixels": [
+      960,
+      1200
+    ],
+    "source_pixels": [
+      480,
+      600
+    ],
+    "method": "Lanczos 2x, light luma sharpening; no frame interpolation",
+    "bytes": 6854089
+  },
+  {
+    "task": "setrika",
+    "source": "https://frogku.id/assets/video/task-setrika.mp4",
+    "output": "video/task-setrika.mp4",
+    "output_pixels": [
+      960,
+      1200
+    ],
+    "source_pixels": [
+      480,
+      600
+    ],
+    "method": "Lanczos 2x, light luma sharpening; no frame interpolation",
+    "bytes": 3058108
+  }
+]

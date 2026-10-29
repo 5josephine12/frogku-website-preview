@@ -1,0 +1,15 @@
+{
+  "frame": {
+    "height": 650,
+    "width": 300
+  },
+  "media": {
+    "height": 318.65625,
+    "width": 264,
+    "x": 18,
+    "y": 205.96875
+  },
+  "brandField": "#58DF35",
+  "source": "phone-frame-source.html",
+  "colorProfile": "sRGB"
+}

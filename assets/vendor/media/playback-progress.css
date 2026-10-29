@@ -1,0 +1,13 @@
+/* Recorded episode's media rail. The 40/44px hit area stays separate from
+   its painted 11px Geist Mono cap-height rail and circular playhead. */
+.playback-progress{display:flex;flex:1;min-width:0}
+.playback-slider.playback-slider{--playback-control-height:40px;--playback-time-size:11px;--playback-rail-height:1cap;--playback-marker:var(--brand-ink);flex:1;min-width:0;width:auto;margin-inline-start:var(--playback-rail-optical-gap,0px);font-family:var(--font-numeric);font-size:var(--playback-time-size);--fill-slab:#fff;--fill-on:var(--brand-ink);--playback-track:var(--slider-track)}
+.playback-slider :is(.slo-track,.playback-rail,.slo-fill,.slo-knob){font-family:var(--font-numeric)!important}
+.playback-slider.playback-slider .slo-track{height:var(--playback-control-height);border-radius:0;background:transparent;outline:none;box-shadow:none;overflow:visible}
+.playback-slider .slo-track::before{display:none}
+.playback-slider .playback-rail{position:absolute;inset:50% 0 auto;height:var(--playback-rail-height);transform:translateY(-50%);border-radius:999px;background:var(--playback-track);overflow:hidden;pointer-events:none}
+.playback-slider.playback-slider .slo-fill{top:0;bottom:0;height:100%;min-width:calc(var(--playback-rail-height) / 2);border-radius:0;background:var(--slider-fill)}
+.playback-slider.playback-slider .slo-knob{top:0;bottom:0;width:var(--playback-rail-height);height:var(--playback-rail-height);margin-left:calc(var(--playback-rail-height) / -2);border:0;border-radius:999px;background:var(--playback-marker);outline:none;box-shadow:none;transition:background-color var(--ui-duration-feedback,180ms) var(--ui-ease,cubic-bezier(.22,1,.36,1))}
+.playback-slider .slo-track:focus-visible .slo-knob{background:var(--playback-marker)}
+:root[data-theme=dark] .playback-slider{--fill-slab:var(--ds-paper)}
+@media(max-width:700px){.playback-slider.playback-slider{--playback-control-height:44px}}

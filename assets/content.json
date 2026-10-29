@@ -1,0 +1,489 @@
+{
+  "signup": "mailto:adminfrogku@gmail.com",
+  "tasks": [
+    {
+      "id": "masak",
+      "title": "Memasak",
+      "tag": "Dapur jadi tempat cuan.",
+      "text": "Masak buat keluarga kayak biasa. Kameranya yang ngerekam, kamu tetep ngulek.",
+      "color": "#e8e6ff"
+    },
+    {
+      "id": "cukur",
+      "title": "Mencukur rambut",
+      "tag": "Potong rambut, tambah cuan.",
+      "text": "Di barbershop atau salon. Kamera di kepala, tangan tetap motong.",
+      "color": "#f9d8e6"
+    },
+    {
+      "id": "jemur",
+      "title": "Menjemur pakaian",
+      "tag": "Jemuran jalan. Cuan datang.",
+      "text": "Abis nyuci, jemur kayak biasa. Bedanya, sekarang ada duitnya.",
+      "color": "#e3f0d3"
+    },
+    {
+      "id": "setrika",
+      "title": "Menyetrika baju",
+      "tag": "Licin bajunya, tebel dompetnya.",
+      "text": "Tumpukan setrikaan akhirnya ada gunanya. Licin bajunya, tebel dompetnya.",
+      "color": "#ffe4b9"
+    }
+  ],
+  "faqs": [
+    {
+      "category": "Bayaran",
+      "q": "Jadi bayarannya berapa?",
+      "a": "Rp 0–100.000 per jam rekaman, tergantung kualitas videomu. Makin bagus rekamannya, makin sultan bayarannya. Yang dibayar cuma rekaman yang lolos peninjauan. Detail tiap tugas ada di aplikasi.",
+      "keywords": [
+        "bayar",
+        "bayaran",
+        "uang",
+        "duit",
+        "cuan",
+        "gaji",
+        "berapa",
+        "penghasilan",
+        "rupiah",
+        "upah"
+      ]
+    },
+    {
+      "category": "Mulai",
+      "q": "Ini penipuan bukan?",
+      "a": "Bukan. Gak ada biaya daftar, gak minta transfer, kameranya dipinjemin gratis. Kalau ada yang minta kamu bayar atas nama Frogku, itu bukan kami. Laporin ke adminfrogku@gmail.com.",
+      "keywords": [
+        "penipuan",
+        "tipu",
+        "aman",
+        "biaya",
+        "gratis",
+        "transfer",
+        "scam"
+      ]
+    },
+    {
+      "category": "Perangkat & privasi",
+      "q": "Apakah saya harus membeli device sendiri?",
+      "a": "Kamera dipinjamkan gratis setelah video contoh tugas lolos peninjauan. Tim kami akan mengantarkan device perekam ke rumahmu. Satu orang cukup satu set, dan set yang sama dipakai untuk tugas-tugas berikutnya.",
+      "keywords": [
+        "beli",
+        "kamera",
+        "device",
+        "perangkat",
+        "alat",
+        "kirim",
+        "antar",
+        "mahkota"
+      ]
+    },
+    {
+      "category": "Mulai",
+      "q": "Video contoh tugas direkam pakai apa?",
+      "a": "Pakai HP kamu sendiri, langsung di dalam aplikasi, durasi 5–15 detik. Tidak bisa memilih video dari galeri.",
+      "keywords": [
+        "uji",
+        "contoh",
+        "test",
+        "tes",
+        "durasi",
+        "detik",
+        "galeri",
+        "rekam"
+      ]
+    },
+    {
+      "category": "Perangkat & privasi",
+      "q": "Mukaku bakal masuk video?",
+      "a": "Kameranya dipakai di kepala, jadi yang kerekam umumnya tangan dan kerjaanmu, bukan mukamu. Video uji cuma dilihat tim peninjau.",
+      "keywords": [
+        "muka",
+        "wajah",
+        "tangan",
+        "kepala",
+        "face"
+      ]
+    },
+    {
+      "category": "Perangkat & privasi",
+      "q": "Siapa yang melihat video contoh tugas saya?",
+      "a": "Video contoh tugas hanya dilihat oleh tim peninjau untuk menilai apakah kamu cocok dengan tugasnya. Kamu bisa menghapus akun kapan saja di aplikasi; akun dan semua video yang kamu kirim akan ikut dihapus.",
+      "keywords": [
+        "privasi",
+        "privacy",
+        "data",
+        "hapus",
+        "akun",
+        "melihat",
+        "siapa",
+        "peninjau"
+      ]
+    },
+    {
+      "category": "Mulai",
+      "q": "Kok daftarnya lewat admin, gak di Play Store?",
+      "a": "Frogku masih tahap uji coba. Hubungi admin di adminfrogku@gmail.com untuk tautan resmi dari frogku.com. Versi Android diunduh lewat situs resmi, dan versi iPhone dipasang lewat TestFlight dari Apple. Jangan unduh dari tempat lain ya.",
+      "keywords": [
+        "daftar",
+        "mulai",
+        "gabung",
+        "download",
+        "unduh",
+        "install",
+        "aplikasi",
+        "android",
+        "iphone",
+        "testflight",
+        "play",
+        "store",
+        "admin",
+        "formulir"
+      ]
+    },
+    {
+      "category": "Mulai",
+      "q": "Kode SMS tidak masuk?",
+      "a": "Kamu bisa beralih ke masuk dengan email di halaman login.",
+      "keywords": [
+        "sms",
+        "kode",
+        "otp",
+        "login",
+        "email",
+        "masuk",
+        "verifikasi"
+      ]
+    },
+    {
+      "category": "Bayaran",
+      "q": "Beneran bisa jadi sultan?",
+      "a": "Jujur: belum tentu. Tapi dibayar per tugas itu beneran, dan anggur bisa beli sendiri.",
+      "keywords": [
+        "sultan",
+        "anggur",
+        "kaya"
+      ]
+    },
+    {
+      "category": "Mulai",
+      "q": "Harus ganteng/cantik kayak sultan?",
+      "a": "Nggak. Yang dinilai tempat dan kerjaannya, bukan mukanya. Tenang.",
+      "keywords": [
+        "ganteng",
+        "cantik",
+        "penampilan",
+        "syarat"
+      ]
+    },
+    {
+      "category": "Mulai",
+      "q": "Punya kerjaan sendiri, bisa ikut?",
+      "a": "Lipat baju, rakit furnitur, bikin kue… Punya kerjaan sendiri? Usulin aja. Kerjaan yang jarang ada rekamannya justru paling dicari. Tanya admin dulu tugas apa aja yang lagi dicari.",
+      "keywords": [
+        "tugas",
+        "kerjaan",
+        "kerja",
+        "aktivitas",
+        "sendiri",
+        "kambing",
+        "nelayan",
+        "bengkel",
+        "tahu",
+        "bebek",
+        "furnitur",
+        "lipat"
+      ]
+    },
+    {
+      "category": "Mulai",
+      "q": "Apakah ada jumlah minimum video yang harus direkam setiap hari?",
+      "a": "Tidak ada. Anda bebas merekam video sebanyak yang Anda mau, dengan kecepatan dan waktu yang Anda pilih sendiri.",
+      "keywords": [
+        "minimum",
+        "minimal",
+        "sehari",
+        "harian",
+        "target",
+        "jumlah",
+        "waktu",
+        "bebas",
+        "daily",
+        "minimum",
+        "quota",
+        "每天",
+        "最少",
+        "数量",
+        "per day",
+        "setiap hari",
+        "daily video",
+        "自己安排",
+        "安排时间",
+        "灵活",
+        "schedule",
+        "flexible",
+        "jadwal",
+        "waktu"
+      ]
+    },
+    {
+      "category": "Mulai",
+      "q": "Lokasi mana saja yang memenuhi syarat?",
+      "a": "Saat ini kami hanya menerima pendaftar dari wilayah Jabodetabek (Jakarta, Bogor, Depok, Tangerang, dan Bekasi).",
+      "keywords": [
+        "lokasi",
+        "wilayah",
+        "daerah",
+        "jabodetabek",
+        "jakarta",
+        "bogor",
+        "depok",
+        "tangerang",
+        "bekasi",
+        "location",
+        "area",
+        "eligible",
+        "region",
+        "地区",
+        "城市",
+        "雅加达"
+      ]
+    },
+    {
+      "category": "Bayaran",
+      "q": "Bagaimana kompensasi dihitung?",
+      "a": "Setiap rekaman berdurasi pendek, sekitar 1–2 menit. Pembayaran = Tarif per jam × (Menit rekaman yang lolos peninjauan ÷ 60). Contoh: jika total rekaman yang lolos peninjauan 30 menit, Anda akan mendapatkan setengah dari tarif per jam. Tarif tugas dapat berubah; lihat aplikasi untuk tarif terbaru.",
+      "keywords": [
+        "hitung",
+        "kompensasi",
+        "menit",
+        "durasi",
+        "rumus",
+        "calculate",
+        "calculated",
+        "compensation",
+        "minutes",
+        "计算",
+        "分钟",
+        "时长"
+      ]
+    },
+    {
+      "category": "Perangkat & privasi",
+      "q": "Berapa banyak perangkat yang akan diberikan kepada saya?",
+      "a": "Satu perangkat per orang. Jumlah ini tidak berubah, berapa pun jumlah video Anda yang disetujui.",
+      "keywords": [
+        "berapa perangkat",
+        "satu",
+        "banyak",
+        "jumlah perangkat",
+        "many devices",
+        "one device",
+        "多少设备",
+        "一台",
+        "几台"
+      ]
+    },
+    {
+      "category": "Perangkat & privasi",
+      "q": "Apa saja yang harus terlihat dalam video?",
+      "a": "Kedua tangan Anda harus terlihat jelas saat melakukan suatu aktivitas. Video yang tidak menampilkan kedua tangan mungkin tidak akan disetujui.",
+      "keywords": [
+        "kedua",
+        "tangan",
+        "terlihat",
+        "syarat video",
+        "both",
+        "hands",
+        "visible",
+        "show",
+        "双手",
+        "清晰",
+        "看见",
+        "画面"
+      ]
+    },
+    {
+      "category": "Mulai",
+      "q": "Siapa yang bisa saya hubungi jika memiliki pertanyaan lebih lanjut?",
+      "a": "Untuk pertanyaan atau bantuan, kirim email ke adminfrogku@gmail.com.",
+      "keywords": [
+        "hubungi",
+        "kontak",
+        "bantuan",
+        "support",
+        "contact",
+        "customer service",
+        "help",
+        "客服",
+        "联系",
+        "帮助"
+      ]
+    }
+  ],
+  "activities": [
+    "Ritel dan Barang Konsumen",
+    "Pakaian dan Fesyen",
+    "Jasa Perbaikan",
+    "Makanan dan Minuman",
+    "Rumah",
+    "Konstruksi dan Perkakas",
+    "Halaman / Pekarangan",
+    "Percetakan dan Desain",
+    "Perhotelan",
+    "Otomotif dan Transportasi",
+    "Olahraga dan Rekreasi",
+    "Studio Kreatif",
+    "Administrasi dan Layanan Perkantoran",
+    "Pendidikan dan Pelatihan",
+    "Manufaktur Industri",
+    "Energi dan Utilitas",
+    "Kesehatan dan Farmasi",
+    "Kebersihan dan Sanitasi",
+    "Laboratorium / Ilmiah",
+    "Penitipan Anak dan Pengasuhan",
+    "Keselamatan Publik dan Tanggap Darurat",
+    "Pertanian dan Budidaya",
+    "Kecantikan dan Perawatan Diri",
+    "Hiburan dan Acara"
+  ],
+  "chatAliases": [
+    [
+      "pay",
+      "paid",
+      "earn",
+      "earning",
+      "earnings",
+      "money",
+      "salary",
+      "much",
+      "payment",
+      "报酬",
+      "工资",
+      "收入",
+      "赚钱",
+      "赚多少",
+      "多少钱",
+      "付款",
+      "bayarannya"
+    ],
+    [
+      "scam",
+      "safe",
+      "cost",
+      "fee",
+      "trust",
+      "deposit",
+      "骗局",
+      "安全",
+      "收费",
+      "费用",
+      "押金",
+      "tipuan"
+    ],
+    [
+      "camera",
+      "device",
+      "equipment",
+      "delivery",
+      "buy",
+      "free camera",
+      "相机",
+      "设备",
+      "购买",
+      "免费",
+      "寄送",
+      "kamera"
+    ],
+    [
+      "test",
+      "clip",
+      "seconds",
+      "gallery",
+      "sample",
+      "试拍",
+      "秒",
+      "相册",
+      "测试",
+      "contoh"
+    ],
+    [
+      "face",
+      "hands",
+      "面部",
+      "脸",
+      "双手"
+    ],
+    [
+      "privacy",
+      "delete",
+      "account deletion",
+      "who sees",
+      "data",
+      "隐私",
+      "删除",
+      "数据",
+      "谁能看"
+    ],
+    [
+      "signup",
+      "sign up",
+      "register",
+      "join",
+      "start",
+      "download",
+      "android",
+      "iphone",
+      "app store",
+      "testflight",
+      "注册",
+      "参与",
+      "加入",
+      "开始",
+      "下载",
+      "安装",
+      "daftarnya"
+    ],
+    [
+      "sms",
+      "code",
+      "otp",
+      "login",
+      "email",
+      "verification",
+      "短信",
+      "验证码",
+      "邮箱",
+      "登录"
+    ],
+    [
+      "royalty",
+      "rich",
+      "sultan",
+      "赢家",
+      "富有"
+    ],
+    [
+      "looks",
+      "beautiful",
+      "handsome",
+      "颜值",
+      "长相",
+      "漂亮"
+    ],
+    [
+      "task",
+      "tasks",
+      "activity",
+      "activities",
+      "job",
+      "own",
+      "goat",
+      "任务",
+      "工作",
+      "推荐",
+      "羊",
+      "活动"
+    ]
+  ],
+  "chatFallback": "Belum ada jawaban yang cocok. Hubungi admin di adminfrogku@gmail.com untuk pertanyaan ini, ya."
+}

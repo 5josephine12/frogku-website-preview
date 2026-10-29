@@ -1,0 +1,55 @@
+/* Shared 20261028-shared-v185: Sample viewer card owner.
+   sample-viewer.tsx cards() / sample-viewer.css, final shared-surfaces.css.
+   DOM button adapter supplies Frogku records and the existing task-dialog action.
+   ActionArrow and input modality are the complete shared owners in this folder. */
+.tasks-section{--bg:var(--ui-paper);--fg:var(--ui-fg);--muted:var(--ui-muted);--line:var(--ui-line);--surface:var(--ui-surface);--paper:var(--ui-surface)}
+.sample-card{text-align:left;display:flex;flex-direction:column;min-width:0;border:0;border-radius:24px;background:var(--bg);padding:12px;color:var(--fg);overflow:hidden;transition:box-shadow 180ms cubic-bezier(.22,1,.36,1)}
+.sample-card:hover{box-shadow:inset 0 0 0 1px var(--line)}
+.sample-image{position:relative;aspect-ratio:16/10;border-radius:12px;overflow:hidden;background:var(--paper,var(--surface))}
+.sample-card-copy{display:flex;flex:1;flex-direction:column;padding:16px 4px 12px;gap:8px}
+.sample-card h3{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;font-size:14px;line-height:20px;letter-spacing:-.015em;margin:0}
+.sample-card h3 svg{margin-top:2px;color:var(--brand-ink)}
+.sample-card p{margin:0 0 12px;color:var(--muted);font-size:12px;line-height:18px}
+.sample-count{display:flex;align-items:center;gap:6px;margin-top:auto;padding-top:8px;color:var(--muted);font-size:12px}
+.sample-image video{display:block;width:100%;height:100%;object-fit:cover}
+.sample-card{box-shadow:none!important}
+.sample-card h3>svg{transition:rotate 180ms cubic-bezier(.22,1,.36,1)}
+.sample-card:focus-visible h3>svg{rotate:45deg}
+.sample-card:hover h3>svg{rotate:45deg}
+/* Destination requirements: readable marketing copy and centered inline rows. */
+.sample-card h3{align-items:center;font-size:18px;line-height:26px;font-weight:500}
+.sample-card h3>svg{margin-top:0}
+.sample-card p{font-size:15px;line-height:22px;min-height:44px}
+.sample-count{font-size:14px;line-height:22px}
+.sample-count strong{font-size:16px;line-height:24px;font-weight:500}
+.tasks-section{background:var(--ink);color:#fff}
+.tasks-section .section-top,.tasks-section .task-track,.tasks-section .task-foot{max-width:none;margin-inline:auto}
+.task-track{display:flex;gap:16px;padding-block:32px;scroll-padding-inline:var(--gutter)}
+.task-track>.sample-card{flex:0 0 82vw;max-width:350px;scroll-snap-align:start}
+.task-foot{padding-bottom:12px}
+@media(min-width:700px){.task-track{gap:24px}.task-track>.sample-card{flex-basis:calc((100% - 24px)/2);max-width:none}}
+@media(min-width:1180px){.task-track>.sample-card{flex-basis:calc((100% - 72px)/4)}}
+/* Requested marketing composition: taller footage has a bounded height.
+   Shared paper, insets, corners, copy and the action owner stay intact. */
+.sample-image{aspect-ratio:1}
+.sample-card-copy{flex:none}
+@media(min-width:1000px){
+ .tasks-section{height:auto;min-height:100svh;grid-template-rows:auto auto auto;align-content:center;row-gap:32px;padding-bottom:48px}
+ .tasks-section>.task-track{height:clamp(390px,48svh,640px);align-self:center;align-items:stretch;padding-block:0;min-height:0}
+ .task-track>.sample-card .sample-image{flex:1;min-height:200px;aspect-ratio:auto}
+}
+@media(prefers-reduced-motion:reduce){.sample-card,.sample-card h3>svg{transition:none}}
+/* Requested preview emphasis: all clips play at rest; desktop hover and keyboard
+   focus fill the card with brand green and retain readable dark copy. */
+.sample-card{transition:background-color 180ms cubic-bezier(.22,1,.36,1),color 180ms cubic-bezier(.22,1,.36,1)}
+.sample-card :is(h3,p,.sample-count),.sample-card h3>svg{transition:color 180ms cubic-bezier(.22,1,.36,1),rotate 180ms cubic-bezier(.22,1,.36,1)}
+.sample-image video{transition:transform 180ms cubic-bezier(.22,1,.36,1)}
+.sample-card:focus-visible{background:var(--green);color:var(--ink)}
+.sample-card:focus-visible :is(h3,p,.sample-count),.sample-card:focus-visible h3>svg{color:var(--ink)}
+.sample-card:focus-visible .sample-image video{transform:scale(1.025)}
+@media(hover:hover) and (pointer:fine){
+ .sample-card:hover{background:var(--green);color:var(--ink)}
+ .sample-card:hover :is(h3,p,.sample-count),.sample-card:hover h3>svg{color:var(--ink)}
+ .sample-card:hover .sample-image video{transform:scale(1.025)}
+}
+@media(prefers-reduced-motion:reduce){.sample-card,.sample-card :is(h3,p,.sample-count),.sample-card h3>svg,.sample-image video{transition:none}.sample-card .sample-image video{transform:none}}

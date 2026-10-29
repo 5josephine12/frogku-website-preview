@@ -1,0 +1,28 @@
+{
+  "version": "1.60.0",
+  "source": "https://github.com/lucide-icons/lucide/tree/1.60.0",
+  "license": "ISC",
+  "symbols": {
+    "arrow": "arrow-right",
+    "arrow-up": "arrow-up-right",
+    "plus": "plus",
+    "close": "x",
+    "play": "play",
+    "pause": "pause",
+    "check": "check",
+    "chat": "message-circle",
+    "search": "search",
+    "download": "download",
+    "shield": "shield-check",
+    "camera": "camera",
+    "chevron": "chevron-down",
+    "arrow-down": "arrow-down",
+    "menu": "menu",
+    "signal": "signal",
+    "battery": "battery-full",
+    "top": "arrow-up",
+    "circle-check": "circle-check",
+    "chevron-right": "chevron-right"
+  },
+  "brand_exception": "Frogku logo: caller-owned artwork, transparent eye centers"
+}

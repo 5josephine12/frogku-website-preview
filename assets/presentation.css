@@ -1,0 +1,750 @@
+/* Marketing composition: Cash App reference; shared controls, symbols and popup
+   motion follow the shared UI library. Mobile owns the base layout. */
+:root{--header-height:72px;--gutter:20px;--dock-height:80px}
+html{scroll-padding-top:calc(var(--header-height) + 16px)}
+.icon{width:20px;height:20px;display:block;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.icon *{vector-effect:non-scaling-stroke}
+.pill{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:13px 22px;border:1px solid transparent;border-radius:100px;font-size:13px;font-weight:500;line-height:20px;text-align:center;max-width:100%;transition:background .18s var(--ease),color .18s var(--ease),transform .18s var(--ease)}
+.pill .icon{width:16px;height:16px}
+.pill:active{transform:scale(.97)}
+.pill.outline{border-color:currentColor}
+.circle{width:44px;height:44px;padding:0;border:0;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto;background:var(--ink);color:white;transition:background .18s,transform .18s var(--ease)}
+.circle .icon{width:18px;height:18px}
+.circle:active{transform:scale(.94)}
+.circle.outline{border:1px solid #bcbcb8;background:transparent;color:var(--ink)}
+@media(hover:hover){.circle:hover{background:#303030}.circle.outline:hover{background:var(--ink);color:white}.pill:hover{transform:translateY(-1px)}}
+.brand{display:inline-flex;align-items:center;min-height:44px;gap:8px;font-size:25px;font-weight:600;letter-spacing:-1.5px;flex:0 0 auto}
+.brand-icon{display:grid;place-items:center;width:38px;height:38px;background:var(--ink);color:var(--green);border-radius:11px}
+.brand-icon svg{width:33px;height:33px;--pupil:var(--ink)}
+.header{height:var(--header-height);padding:12px var(--gutter);position:fixed;inset:0 0 auto;z-index:30;display:flex;align-items:center;gap:12px;border-bottom:1px solid transparent;transition:background .2s,border-color .2s}
+.header.scrolled{background:#fff;border-bottom-color:#e8e8e5}
+.header-actions{display:flex;align-items:center;gap:6px;margin-left:auto}
+.header .pill{min-height:44px;padding:11px 16px}
+.header .header-join :is(.icon,.action-arrow){display:none}
+.header .wide-label{display:none}
+.header.scrolled .light{background:var(--green)}
+.language-wrap{display:block;position:relative;width:64px}
+.language-wrap>.icon{position:absolute;right:6px;top:16px;width:12px;height:12px;pointer-events:none}
+.language-select{appearance:none;background:transparent;border:0;min-height:44px;width:56px;padding:10px 20px 10px 4px;border-radius:8px;font-size:16px;font-weight:500;cursor:pointer;color:inherit}
+.language-select option{color:#121212;background:#fff}
+.desktop-nav,.download-nav{display:none}
+.phone-status{height:52px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:600;position:relative;z-index:5;background:white}
+
+.status-symbols{display:flex;align-items:center;gap:4px}
+.status-symbols .icon{width:18px;height:18px;stroke-width:1.5}
+.phone-content{position:absolute;inset:52px 0 0;padding:14px 22px 24px;background:white}
+.app-heading{display:flex;align-items:center;gap:8px;font-size:11px;line-height:20px;font-weight:500}
+.app-frog{display:block;flex:none;width:27px;height:27px}
+.app-frog use{transform:translateY(3px)}
+.avatar{margin-left:auto;background:var(--ui-brand-soft);border-radius:50%;width:28px;height:28px;display:grid;place-items:center;font-size:11px}
+.phone-title{font-size:40px;line-height:1.04;letter-spacing:-2px;font-weight:500;margin:24px 0 22px}
+.phone-title>span{color:#898989}
+.app-tabs{display:flex;align-items:center;gap:18px;font-size:10px;color:#888;margin-bottom:16px}
+.app-tabs .active{color:var(--ink)}
+.app-tabs>.icon{width:17px;height:17px;margin-left:auto}
+.phone-task{height:294px;border-radius:24px;overflow:hidden;position:relative;background:#d1d1c8}
+.phone-task video{width:100%;height:100%;object-fit:cover}
+.phone-task:after{content:'';position:absolute;inset:25% 0 0;background:linear-gradient(transparent,#000b)}
+.task-live{position:absolute;top:14px;left:14px;z-index:2;background:#fffe;border-radius:30px;padding:6px 9px;font-size:7px;display:flex;align-items:center;gap:5px}
+.task-live>span{width:5px;height:5px;border-radius:50%;background:var(--green)}
+.phone-task-info{position:absolute;left:18px;bottom:20px;color:white;z-index:2}
+.phone-task-info>span{font-size:9px}
+.phone-task-info>strong{display:block;font-size:29px;letter-spacing:-1px;margin:5px 0 10px}
+.phone-task-info>div{font-size:13px}
+.phone-task-info>div>span{font-size:10px;color:#ddd}
+.phone-mini{display:flex;align-items:center;gap:12px;margin:16px 0;padding-bottom:16px}
+.phone-mini img{width:49px;height:49px;object-fit:cover;border-radius:12px}
+.phone-mini strong{display:block;font-size:11px}
+.phone-mini div>span{font-size:9px;color:#888;display:block;margin-top:5px}
+.mini-plus{font-size:19px;margin-left:auto}
+.phone-bottom{border-top:1px solid #eee;display:flex;justify-content:space-around;padding-top:13px;font-size:8px;color:#999}
+.phone-bottom>span{display:flex;flex-direction:column;align-items:center;gap:5px}
+.phone-bottom .current{color:var(--ink)}
+.phone-bottom .icon{width:18px;height:18px}
+
+
+.pay-device .app-heading{font-size:8px;letter-spacing:.07em}
+.pay-screen-title{font-size:31px;letter-spacing:-1.4px;line-height:1.1;margin:34px 0 24px}
+.pay-screen-title>span{color:#73736c}
+.pay-rate{background:var(--green);border-radius:24px;padding:25px 24px}
+.pay-rate>span{font-size:11px}
+.pay-rate>div{display:flex;align-items:baseline;gap:8px;font-size:15px;margin:25px 0 19px;white-space:nowrap}
+.pay-rate strong{font-size:54px;line-height:1;letter-spacing:-4px}
+.pay-rate>div>span{font-size:15px;letter-spacing:-.6px}
+.pay-rate>p{font-size:10px;max-width:200px}
+.pay-example{display:flex;align-items:center;gap:12px;padding:25px 0;border-bottom:1px solid #deded6}
+.pay-example-icon{width:35px;height:35px;border-radius:50%;display:grid;place-items:center;background:#e3e3db;flex:none}
+.pay-example strong{font-size:12px}
+.pay-example p{font-size:10px;color:#71716b;margin-top:5px}
+.pay-formula{padding:24px 0}
+.pay-formula>span{font-size:8px;letter-spacing:.1em;color:#77776f}
+.pay-formula p{font-size:12px;margin-top:10px}
+.pay-screen-foot{display:flex;align-items:center;gap:8px;font-size:9px;color:#77776f;padding-top:12px}
+.pay-screen-foot>.icon{width:14px;height:14px}
+/* Footer controls keep their own readable tracks, including the narrowest phones. */
+.footer{background:#121212;color:#fff;padding:44px var(--gutter) calc(var(--dock-height) + env(safe-area-inset-bottom));overflow:clip}
+.footer-top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-bottom:36px;border-bottom:1px solid #ffffff25}
+.footer .brand-icon{background:var(--green);color:#121212}
+.footer .brand-icon svg{--pupil:var(--green)}
+.footer-top>p{display:none}
+.back-top{font-size:11px;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;color:#c7c7c7}
+.back-top>.icon{width:14px;height:14px}
+.footer-links{display:grid;grid-template-columns:1fr 1fr;gap:32px 20px;padding:32px 0}
+.footer-language{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:12px;color:#a5a5a5}
+.language-segments{position:relative;display:flex;padding:4px;border-radius:100px;background:#242429;isolation:isolate}
+.language-segments button{position:relative;border:0;background:transparent;color:#a5a5a5;min-height:44px;min-width:48px;padding:10px 14px;font-size:12px;font-weight:500;line-height:18px;border-radius:100px}
+.language-segments button[aria-pressed=true]{color:#fff}
+.language-indicator{position:absolute;border-radius:100px;background:var(--green);pointer-events:none;z-index:-1}
+.footer-links>div:not(.footer-language){display:flex;flex-direction:column;align-items:flex-start;gap:4px;font-size:13px;min-width:0}
+.footer-links>div>span{font-size:11px;color:#858585;margin-bottom:12px}
+.footer-links>div>a{display:flex;align-items:center;min-height:40px;line-height:1.5;max-width:100%;overflow-wrap:anywhere}
+.footer-bottom{border-top:1px solid #ffffff25;padding-top:24px;display:flex;flex-wrap:wrap;gap:12px 24px;font-size:11px;color:#aaa}
+.footer-bottom>span{flex-basis:100%;padding-bottom:4px}
+.footer-bottom>a{min-height:36px;display:flex;align-items:center}
+.legal-note{font-size:10px;line-height:1.6;color:#777;max-width:570px;margin-top:18px}
+.footer-wordmark{font-size:26vw;letter-spacing:-.085em;line-height:.95;margin:50px 0 -9px;font-weight:500;white-space:nowrap}
+
+/* The same live application form opens locally, preserving values and scroll. */
+.application-dialog{width:min(540px,calc(100% - 24px));max-height:calc(100dvh - 24px);margin:auto;padding:0;border:0;border-radius:24px;background:white;color:var(--ink);overflow:auto;overscroll-behavior:contain}
+.application-dialog::backdrop{background:#12121266;backdrop-filter:blur(5px)}
+.application-dialog-header{position:sticky;top:0;z-index:2;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px;border-bottom:0;font-size:20px;line-height:26px;letter-spacing:-.025em;font-weight:500}
+.application-dialog-header .circle{background:#f7f7f9;color:#555}
+.application-mount .join-form-shell{padding:0 24px 24px;border-radius:0}
+.application-mount .form-heading h3,.application-mount .form-heading .eyebrow{display:none}
+.application-mount .form-heading>p{font-size:13px;margin-bottom:24px}
+.application-slot{min-width:0}
+#qualification-form label{font-size:12px;line-height:1.5}
+#qualification-form input:not([type=checkbox]),#qualification-form select{font-size:16px;line-height:24px;min-height:48px;border-radius:14px;padding:11px 13px}
+#qualification-form .form-check{font-size:12px;gap:12px;position:relative;min-height:44px}
+#qualification-form .form-check input{width:18px;height:18px;flex:none;margin-top:2px}
+#qualification-form .form-local-note{font-size:10px;line-height:1.5}
+#qualification-form .pill,.qualification-result .pill{width:100%}
+.qualification-result{min-height:400px}
+.qualification-result .pill{font-size:13px}
+.edit-application{font-size:13px;min-height:44px;padding-top:12px}
+.mobile-apply{position:fixed;bottom:0;left:0;right:0;z-index:25;padding:12px 76px calc(12px + env(safe-area-inset-bottom)) 16px;background:#fffffff5;border-top:1px solid #e8e8e5;transform:translateY(110%);opacity:0;transition:transform .3s var(--ease),opacity .2s;pointer-events:none}
+.mobile-apply.visible{transform:none;opacity:1;pointer-events:auto}
+.mobile-apply .pill{width:100%}
+.chat-launcher{width:48px;height:48px;right:16px;bottom:calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:center;gap:10px;padding:0;border-radius:50%;z-index:26}
+.chat-launcher>span{display:none}
+.chat-launcher>.icon{width:20px;height:20px}
+.chat-panel{z-index:35;right:12px;bottom:calc(80px + env(safe-area-inset-bottom));width:min(380px,calc(100% - 24px));max-height:calc(100dvh - 104px - env(safe-area-inset-bottom));border-radius:24px}
+.chat-panel>header{gap:12px}
+.chat-panel>header div{min-width:0}
+.chat-panel>header div>span{font-size:11px;line-height:1.4}
+.chat-suggestions{overflow-x:auto;flex-wrap:nowrap;overscroll-behavior-x:contain}
+.chat-suggestions button{min-height:44px;white-space:nowrap;font-size:11px}
+.chat-messages{min-height:100px;flex:1;overscroll-behavior:contain}
+.chat-form input{font-size:16px;min-width:0}
+.chat-disclaimer{font-size:10px}
+.chat-panel>header .circle{background:#f5f5f5;color:#444}
+.dialog-close{width:44px;height:44px}
+.carousel-buttons .circle{width:44px;height:44px}
+.faq-filters{gap:8px}
+.faq-filters button{min-height:44px;font-size:12px;padding:10px 14px}
+.faq-search{min-height:52px}
+.faq-search>.icon{width:18px;height:18px}
+.faq-question>.icon{width:18px;height:18px}
+.task-card-play .icon{width:17px;height:17px}
+.task-foot>a>.icon{width:16px;height:16px}
+.camera-label{rotate:0;left:0;right:0}.camera-sticker{right:20px}.camera-orbit{width:82%}
+.platform>.pill{grid-column:1/-1;width:100%}
+.platform-icon .icon{width:34px;height:34px}
+.platform details summary{min-height:44px}
+.closing-link{font-size:13px;min-width:210px}
+.menu-dialog{max-height:100dvh;overscroll-behavior:contain}
+.menu-top .circle{width:44px;height:44px}
+.menu-dialog nav>a{font-size:clamp(28px,7.4vw,42px);min-height:64px}
+@media(min-width:700px){
+:root{--gutter:32px;--header-height:88px}
+.header{padding-block:20px}.language-select{font-size:12px}.brand{font-size:28px;gap:10px}.brand-icon{width:44px;height:44px;border-radius:13px}.brand-icon svg{width:38px;height:38px}
+.header .compact-label{display:none}.header .wide-label{display:inline}.header .header-join :is(.icon,.action-arrow){display:block}.header .pill{padding-inline:20px;min-height:46px}.header-actions{gap:8px}
+.footer{padding:60px 40px 0}.footer-top{padding-bottom:42px}.footer-top>p{display:block;font-size:12px;color:#999;margin-right:auto}
+.footer-links{grid-template-columns:repeat(3,1fr);gap:38px;padding-block:40px}.footer-language{grid-column:1/-1;justify-content:flex-start;gap:24px}.footer-bottom>span{flex-basis:auto;margin-right:auto}.footer-wordmark{margin-top:70px}.footer-links>div>a{min-height:36px}
+.chat-launcher{bottom:24px;right:24px}.chat-panel{bottom:88px;right:24px}.mobile-apply{display:none}
+}
+@media(min-width:1180px){.desktop-nav{display:flex;gap:24px;font-size:14px;font-weight:500;margin-left:auto}.desktop-nav a{display:flex;align-items:center;min-height:44px}.header-actions{margin-left:12px}.download-nav{display:inline-flex}.header .menu-button{margin-left:4px}.footer-links{grid-template-columns:1.1fr 1fr 1.2fr .8fr;gap:40px}.footer-language{grid-column:auto;display:block}.footer-language>span{display:block;margin-bottom:18px}.language-segments{width:max-content}}
+
+/* Cash App composition: large cropped opening screen; centered app-led chapters.
+   Phone widths and chapter movement use separately measured desktop/mobile layouts. */
+.product-story{position:relative;background:var(--brand-field)}
+.story-viewport{position:relative;isolation:isolate}
+.story-green,.story-lilac{display:none}
+.story-chapter{position:relative;padding:80px var(--gutter);background:#fff}
+.chapter-hero{padding-top:120px;padding-bottom:70px;background:var(--brand-field)}
+.chapter-layout{display:flex;flex-direction:column;align-items:stretch;max-width:1600px;margin:0 auto}
+.chapter-title h1,.chapter-title h2{font-size:40px;line-height:1.02;font-weight:500;letter-spacing:-.065em}
+.hero-line{display:block}
+.chapter-title>p{font-size:17px;margin-top:20px}
+.chapter-copy{margin-top:24px;max-width:520px}
+.chapter-copy>p{font-size:16px;line-height:1.5;letter-spacing:-.3px}
+.chapter-copy>p strong{font-weight:400}
+.chapter-copy .chapter-detail{font-size:14px;line-height:1.6;color:#666;margin-top:20px}
+.chapter-copy>.pill{margin-top:28px;width:max-content}
+.chapter-hero .chapter-copy{order:1;margin-top:28px;max-width:350px}
+.chapter-hero .chapter-copy>.pill{display:none}
+.device-visual{width:min(73vw,330px);aspect-ratio:400/866;align-self:center;position:relative;flex:none;filter:none}
+.chapter-hero .device-visual{order:2;width:min(73vw,400px);margin-top:72px}
+.app-device{width:100%;height:100%;position:relative;background:white;border-radius:calc(48px * var(--device-scale,.73));overflow:hidden;box-shadow:0 0 0 1px #1212120d}
+.device-ui{width:400px;height:866px;position:absolute;inset:0 auto auto 0;transform:scale(var(--device-scale,.73));transform-origin:0 0;background:#fff;overflow:hidden;border-radius:48px}
+.chapter-earn .device-visual,.chapter-how .device-visual{order:-1;margin-bottom:56px}
+.chapter-how{background:#EDF5F0}
+.chapter-footnote{font-size:10px;line-height:1.6;color:#777;max-width:470px;margin:42px auto 0;text-align:center}
+.chapter-requirements{display:flex;flex-direction:column;gap:6px;font-size:11px;line-height:1.6;color:#645e76;margin-top:36px}
+.onboarding-steps{list-style:none;margin:0;padding:0;display:grid;gap:22px}
+.onboarding-steps>li{display:flex;align-items:flex-start;gap:16px}
+.onboarding-steps>li>span{font:400 11px/20px var(--font-numeric,monospace);color:#8b819f;padding-top:1px}
+.onboarding-steps strong{display:block;font-size:15px;line-height:1.4;letter-spacing:-.3px}
+.onboarding-steps p{font-size:13px;line-height:1.5;margin-top:4px;color:#71697f}
+.install-trigger{margin-top:12px;vertical-align:middle}
+.story-footer{position:relative;display:flex;justify-content:center;margin-top:22px}
+.story-scroll{display:none}
+.story-footer .media-toggle{width:40px;height:40px;background:#ffffffd9;color:#121212}
+.phone-status{height:48px;padding-inline:26px}
+.phone-content{inset:48px 0 0;padding:20px 24px 24px}
+.app-heading{font-size:12px}.app-frog{width:29px;height:29px}.avatar{width:30px;height:30px;font-size:12px}
+.phone-title{font-size:44px;line-height:1.03;margin:30px 0 24px}
+.app-tabs{font-size:11px;margin-bottom:18px;gap:22px}
+.phone-task{height:362px;border-radius:26px}
+.phone-task-info>strong{font-size:34px}.phone-task-info>span{font-size:11px}.phone-task-info>div{font-size:16px}.phone-task-info>div>span{font-size:11px}
+.task-live{font-size:8px;padding:7px 10px}
+.phone-mini{margin:19px 0;padding-bottom:15px}.phone-mini img{width:54px;height:54px}.phone-mini strong{font-size:12px}.phone-mini div>span{font-size:10px}
+.phone-bottom{font-size:9px;padding-top:15px}.phone-bottom .icon{width:20px;height:20px}
+.pay-device .device-ui,.pay-device .phone-status,.pay-device .phone-content{background:#f6f6f2}
+.pay-device .app-heading{font-size:9px}
+.pay-screen-title{font-size:38px;margin:44px 0 30px}
+.pay-rate{padding:30px 26px;border-radius:28px}.pay-rate>span{font-size:13px}.pay-rate>div{margin:32px 0 24px}.pay-rate strong{font-size:64px;letter-spacing:-4px}.pay-rate>p{font-size:12px;max-width:240px}
+.pay-example{padding:32px 0}.pay-example strong{font-size:14px}.pay-example p{font-size:12px;line-height:1.5;max-width:235px}.pay-example-icon{width:38px;height:38px}
+.pay-formula{padding:30px 0}.pay-formula>span{font-size:10px}.pay-formula p{font-size:14px;line-height:1.5}.pay-screen-foot{font-size:11px}
+.camera-device .phone-content{padding-top:20px}.camera-device .phone-title{margin-top:30px;margin-bottom:28px}
+.camera-screen-photo{position:relative;height:400px;border-radius:28px;overflow:hidden;background:#d8d0ba}
+.camera-screen-photo img{width:100%;height:100%;object-fit:cover;object-position:center 34%}
+.camera-screen-photo>span{position:absolute;bottom:16px;left:16px;right:16px;padding:10px 12px;border-radius:14px;background:#fffffff0;display:flex;align-items:center;gap:8px;font-size:11px}
+.camera-screen-photo .icon{width:17px;height:17px}
+.camera-screen-note{display:flex;align-items:center;gap:12px;padding:25px 0}
+.camera-screen-note>span{background:var(--ui-brand-soft);color:var(--ui-brand-ink);width:35px;height:35px;display:grid;place-items:center;border-radius:50%;flex:none}
+.camera-screen-note strong{font-size:12px}.camera-screen-note p{font-size:11px;color:#777;margin-top:6px}
+.camera-screen-bottom{padding-top:17px;border-top:1px solid #eee;font-size:10px;color:#777}.camera-screen-bottom>span{display:flex;align-items:center;gap:8px}.camera-screen-bottom .icon{width:15px;height:15px}
+/* Supporting content is deliberately quiet: examples and answers only. */
+.tasks-section{padding-top:72px;padding-bottom:48px;background:#fff}
+.tasks-section .section-top{padding-inline:var(--gutter)}
+.section-top h2,.faq-intro h2{font-size:40px;line-height:1.04}
+.section-top .eyebrow,.faq-intro .eyebrow{font-size:9px;letter-spacing:.1em;margin-bottom:18px}
+.task-track{padding-inline:var(--gutter);scroll-padding-inline:var(--gutter)}
+.task-card{flex-basis:78vw;min-width:0;max-width:350px}
+.task-card-image{height:285px}
+.task-card-body{padding:20px}.task-card h3{font-size:23px}.task-card p{font-size:13px;min-height:40px;line-height:1.5}.task-card-rate{margin-top:16px}.task-card-rate strong{font-size:19px}
+.task-foot{padding-inline:var(--gutter);gap:24px}.task-foot p{font-size:10px;line-height:1.6;max-width:650px}.task-foot>a{font-size:13px;min-height:44px;display:inline-flex;align-items:center;gap:8px}
+.faq-section{padding:72px var(--gutter);gap:36px;background:#f7f7f5}
+.faq-intro{position:static}.faq-intro h2{margin-bottom:20px}.faq-intro>p{font-size:14px;line-height:1.5;margin-bottom:24px}
+.faq-more{margin-top:28px}
+.faq-question{font-size:15px;line-height:1.5;letter-spacing:-.3px;gap:20px;padding-block:22px}
+.faq-answer{font-size:14px;line-height:1.65}
+.faq-search{background:#fff;border:0;border-radius:14px;padding:12px 14px;min-height:48px;gap:10px}
+.faq-search>input{font-size:16px;line-height:24px}
+.download-dialog{width:min(680px,calc(100% - 24px))}
+.download-dialog-content{padding:0 24px 24px}
+.download-dialog-content>p:first-child{font-size:13px;line-height:20px;color:#6d6e73;margin-bottom:24px}
+.download-dialog .download-platforms{grid-template-columns:1fr;gap:16px}
+.download-dialog .platform{background:#f8f7fa;padding:20px;border-radius:20px;display:grid;grid-template-columns:1fr auto;column-gap:12px}
+.download-dialog .platform-icon{grid-column:2;grid-row:1/3;width:36px;height:36px;margin:0;font-size:18px}
+.download-dialog .platform h3{font-size:20px;line-height:26px;letter-spacing:-.5px;margin-bottom:8px}
+.download-dialog .platform>p{font-size:12px;line-height:18px;margin-bottom:20px}
+.download-dialog .platform details{grid-column:1/-1}.download-dialog .platform summary{font-size:12px;line-height:18px;padding-top:16px;min-height:44px}.download-dialog .platform ol{font-size:13px;line-height:20px}
+.download-dialog .download-note{font-size:11px;line-height:18px;display:flex;gap:8px;align-items:flex-start;margin-top:20px}.download-dialog .download-note .icon{width:16px;height:16px;flex:none}
+@media(min-width:700px){
+.chapter-hero{padding-top:140px}.chapter-title h1,.chapter-title h2{font-size:52px}.chapter-copy>p{font-size:18px}.chapter-hero .chapter-copy{max-width:460px}
+.chapter-hero .device-visual{width:340px}.device-visual{width:312px}
+.task-card{flex-basis:calc((100% - 36px)/3);max-width:none;min-width:250px}.task-card-image{height:320px}
+.section-top h2,.faq-intro h2{font-size:48px}.tasks-section{padding-top:90px;padding-bottom:60px}
+.faq-section{padding-block:90px}.download-dialog .download-platforms{grid-template-columns:1fr 1fr}
+}
+@media(min-width:1000px){
+.product-story{height:300svh;background:white}
+.story-viewport{height:100svh;min-height:650px;position:sticky;top:0;overflow:clip}
+.story-green,.story-lilac{display:block;position:absolute;inset:0;pointer-events:none;z-index:-1}
+.story-green{background:var(--green);transform-origin:50% 50%}.story-lilac{background:#EDF5F0;opacity:0}
+.story-chapter{position:absolute;inset:0;padding:calc(var(--header-height) + 24px) 20px 24px;background:transparent;opacity:0;pointer-events:none}
+.story-chapter a,.story-chapter button{pointer-events:auto}
+.chapter-layout{height:100%;display:grid;grid-template-columns:minmax(0,1fr) min(400px,32vw) minmax(0,1fr);grid-template-rows:minmax(0,1fr);gap:20px;align-items:center}
+.chapter-title{grid-column:1;text-align:left;max-width:400px;justify-self:start}
+.chapter-title h1{font-size:clamp(40px,3.75vw,48px);line-height:1;letter-spacing:-.065em}.chapter-title h2{font-size:clamp(34px,3.125vw,40px);line-height:1.05;letter-spacing:-.06em;max-width:340px}
+.chapter-title>p{font-size:17px;color:#71697f;margin-top:22px}
+.chapter-copy{grid-column:3;max-width:295px;margin:0;justify-self:end;order:initial!important}
+.chapter-copy>p{font-size:16px;line-height:1.45}.chapter-copy .chapter-detail{font-size:13px;line-height:1.6;margin-top:20px}.chapter-copy>.pill{margin-top:30px}
+.device-visual{grid-column:2;grid-row:1;order:initial!important;margin:0!important;justify-self:center;align-self:center;width:312px}
+.chapter-hero{opacity:1}.chapter-hero .device-visual{align-self:center;width:min(400px,32vw,calc((100svh - var(--header-height) - 48px) * .461894));margin:0!important}
+.chapter-hero .chapter-title,.chapter-hero .chapter-copy{transform:none}
+.chapter-hero .chapter-copy>.pill{display:inline-flex}
+.chapter-hero .chapter-copy{max-width:295px;margin:0}
+.chapter-earn .device-visual,.chapter-how .device-visual{transform:none;width:min(312px,calc((100svh - var(--header-height) - 48px) * .461894))}
+.chapter-footnote{position:absolute;left:20px;bottom:22px;margin:0;text-align:left;max-width:360px;font-size:9px}
+.chapter-requirements{position:absolute;left:20px;bottom:22px;right:96px;margin:0;flex-direction:row;justify-content:space-between;gap:24px;font-size:10px}
+.chapter-how .chapter-copy{padding-bottom:0}
+.onboarding-steps{gap:20px}.onboarding-steps strong{font-size:14px}.onboarding-steps p{font-size:12px}
+.chapter-how .chapter-copy>.pill{margin-top:26px}.install-trigger{margin-top:14px;display:flex}
+.story-footer{position:absolute;left:20px;right:92px;bottom:20px;display:flex;align-items:center;justify-content:space-between;margin:0}
+.story-scroll{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.04em;min-height:44px}.story-scroll .icon{width:16px;height:16px}
+.tasks-section .section-top{padding-inline:32px}.task-track{padding-inline:32px}.task-card{flex-basis:calc((100% - 54px)/4);min-width:0}.task-card-image{height:320px}.task-foot{padding-inline:32px}
+.faq-section{grid-template-columns:1fr 1.25fr;gap:8%;padding:100px 32px}.faq-intro{position:sticky;top:120px;display:block}.faq-intro h2{margin-bottom:24px}
+}
+@media(min-width:1500px){
+.story-chapter{padding-inline:40px}.chapter-layout{grid-template-columns:minmax(0,1fr) 440px minmax(0,1fr);gap:60px}
+.chapter-title h1{font-size:56px}.chapter-title h2{font-size:48px}.chapter-title{max-width:460px}.chapter-copy,.chapter-hero .chapter-copy{max-width:330px}.chapter-copy>p{font-size:19px}.chapter-copy .chapter-detail{font-size:14px}.chapter-hero .device-visual{width:min(420px,calc((100svh - var(--header-height) - 48px) * .461894))}.device-visual{width:330px}.onboarding-steps strong{font-size:15px}.onboarding-steps p{font-size:13px}
+}
+/* Natural flow is also the complete motion-off / short-screen fallback. */
+@media(min-width:1000px){
+.product-story.static-story{height:auto}.static-story .story-viewport{position:relative;height:auto;min-height:0;overflow:visible}.static-story .story-green,.static-story .story-lilac{display:none}.static-story .story-chapter{position:relative;opacity:1!important;transform:none!important;min-height:850px;background:white}.static-story .chapter-hero{background:var(--green);overflow:clip;min-height:100svh;height:100svh}.static-story .chapter-how{background:#EDF5F0}.static-story .chapter-layout{min-height:750px}.static-story .device-visual{transform:none!important}.static-story .chapter-hero .device-visual{margin-top:70px!important}.static-story .chapter-how .chapter-copy{padding-bottom:50px}
+}
+@media(max-width:359px){
+:root{--gutter:16px}.header{gap:6px}.header-actions{gap:4px}.header .brand{font-size:22px;gap:6px}.header .brand-icon{width:34px;height:34px}.header .brand-icon svg{width:29px;height:29px}.header .pill{padding-inline:12px}.language-select{width:56px}
+.chapter-title h1,.chapter-title h2{font-size:34px}.chapter-hero{padding-top:112px}.chapter-copy>p{font-size:15px}.chapter-hero .device-visual{margin-top:60px}.device-visual{width:76vw}.chapter-hero .device-visual{width:76vw}.footer-links{gap:28px 16px}.section-top h2,.faq-intro h2{font-size:36px}
+}
+@media(max-width:699px){.chat-launcher{opacity:1;pointer-events:auto;translate:0 0;transition:opacity 180ms var(--ease),translate 220ms var(--ease)}.chat-launcher.dock-visible{opacity:1;pointer-events:auto;translate:0 0}.footer-links>div>a{min-height:44px}.task-dialog-copy>p,.task-dialog-rate>span,.chat-bubble{font-size:14px;line-height:1.6}.download-dialog-content{padding:0 16px 16px}}
+@media(prefers-reduced-motion:reduce){.mobile-apply,.chat-launcher,.story-chapter,.story-green{transition:none!important;animation:none!important}}
+.external-icon{display:inline-block;vertical-align:middle;width:14px;height:14px;margin-left:4px}.footer-links a .external-icon{margin-left:6px}.menu-bottom>a{display:inline-flex;align-items:center;gap:6px}#close-chat{margin-left:auto}
+/* Readability is a user-requested exception to the compact gallery type scale.
+   Materials, source states, icons and interaction owners stay shared. */
+.brand{align-items:center;line-height:1}.brand>span:last-child{display:block;translate:0 -1px}
+.footer-top{align-items:center}.footer-top>p{margin:0;font-size:16px;line-height:24px;color:#b5b5b5}
+.footer-links>div:not(.footer-language){font-size:15px;line-height:24px;gap:4px}
+.footer-links>div>span,.footer-language{font-size:13px;line-height:20px}
+.footer-bottom{font-size:13px;line-height:20px}.legal-note{font-size:12px;line-height:20px;color:#a1a1a1;max-width:650px}.back-top{font-size:13px;line-height:20px}
+.pill{font-size:15px;line-height:22px;min-height:48px;padding:12px 22px;align-items:center}
+.header .pill{font-size:14px;line-height:22px;min-height:44px;padding:10px 18px}
+.chapter-copy>.chapter-detail{font-size:16px;line-height:1.6;color:#626262}
+.chapter-copy>p{font-size:17px;line-height:1.5}.chapter-title>p{font-size:18px;line-height:1.5}
+.chapter-footnote{font-size:12px;line-height:18px}.chapter-requirements{font-size:13px;line-height:20px}
+.onboarding-steps strong{font-size:16px;line-height:24px}.onboarding-steps p{font-size:15px;line-height:22px}.onboarding-steps>li>span{font-size:12px;line-height:24px;padding:0;min-width:18px}.onboarding-steps>li{align-items:flex-start}
+.onboarding-steps{gap:20px}
+.section-top .eyebrow,.faq-intro .eyebrow{font-size:12px;line-height:18px;letter-spacing:.06em}
+.section-top-side>p{font-size:16px;line-height:24px}.task-card p{font-size:15px;line-height:22px;min-height:44px}.task-card-rate strong{font-size:21px}.task-card-rate>span{font-size:13px;line-height:20px}.task-foot p{font-size:13px;line-height:20px}.task-foot>a{font-size:15px;line-height:22px}
+.faq-intro>p{font-size:16px;line-height:24px}.faq-question{font-size:17px;line-height:26px}.faq-answer{font-size:16px;line-height:26px}
+.faq-search>input{font-size:16px;line-height:24px}.faq-empty{font-size:15px;line-height:24px}
+.download-dialog-content>p:first-child{font-size:16px;line-height:24px}.download-dialog .platform>p{font-size:14px;line-height:22px}.download-dialog .platform ol{font-size:15px;line-height:24px;gap:14px;padding-left:20px}.download-dialog .platform summary{font-size:15px;line-height:22px;display:flex;align-items:center;gap:16px}.download-dialog .platform summary .icon{width:18px;height:18px;flex:none}.download-dialog .download-note{font-size:13px;line-height:20px;align-items:center}.download-dialog .platform-icon{display:flex;align-items:center;justify-content:center;line-height:1}.download-dialog .platform h3{font-size:22px;line-height:28px}
+.application-dialog-header{font-size:22px;line-height:28px;align-items:center}
+.application-mount .form-heading>p{font-size:15px;line-height:22px}
+#qualification-form label{font-size:14px;line-height:22px}
+#qualification-form .form-check{font-size:14px;line-height:22px}
+#qualification-form .form-local-note{font-size:12px;line-height:20px}
+.chat-disclaimer{font-size:12px;line-height:20px}
+@media(min-width:1000px){.chapter-how .chapter-copy{max-width:300px;padding-bottom:0}.chapter-how .onboarding-steps{gap:18px}.chapter-requirements{font-size:12px;line-height:18px}.chapter-footnote{max-width:440px}.chapter-how .chapter-copy>.pill{margin-top:24px}.chapter-copy .chapter-detail{font-size:16px;line-height:25px}.chapter-copy>p{font-size:18px;line-height:27px}}
+@media(min-width:1500px){.chapter-copy,.chapter-hero .chapter-copy,.chapter-how .chapter-copy{max-width:340px}.chapter-copy>p{font-size:20px;line-height:30px}.chapter-copy .chapter-detail{font-size:17px;line-height:26px}.onboarding-steps strong{font-size:17px}.onboarding-steps p{font-size:16px;line-height:24px}}
+@media(max-width:699px){.footer-top>p{display:none}.header .pill{padding-inline:16px}.chapter-requirements{gap:10px}.task-foot{padding-bottom:12px}.download-dialog-content>p:first-child{font-size:15px;line-height:23px}}
+@media(max-width:359px){.header .pill{padding-inline:12px}.chapter-copy>p{font-size:16px}.chapter-title>p{font-size:17px}}
+
+.download-dialog .platform h3{grid-column:1;grid-row:1;align-self:center;margin:0}.download-dialog .platform-icon{grid-column:2;grid-row:1;align-self:center;width:28px;height:28px}.download-dialog .platform-icon .icon{width:26px;height:26px}.download-dialog .platform>p{grid-column:1/-1;grid-row:2;margin:8px 0 20px}
+.chapter-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:28px}
+.chapter-actions>.pill,.chapter-actions>.install-trigger{margin:0;vertical-align:middle;min-height:48px;padding-inline:18px}
+.chapter-how .chapter-actions>.install-trigger{background:var(--green-deep);color:#fff}
+.chapter-how .chapter-actions>.install-trigger:hover{background:var(--ink)}
+.pay-rate>div,.task-card-rate{align-items:center}
+.phone-task-info>div{display:flex;align-items:center;gap:5px}
+@media(min-width:1000px){.chapter-actions{flex-direction:column;align-items:flex-start;margin-top:24px}}
+@media(max-width:359px){.header-actions{gap:3px}.header .pill{padding-inline:11px}}
+.footer-bottom{align-items:center}.footer-bottom>span{padding-bottom:0}
+.section-top,.section-top-side{align-items:center}
+.onboarding-steps>li{align-items:flex-start}
+.language-segments button{font-size:14px;line-height:20px}
+.qualification-result .pill,.edit-application{font-size:15px;line-height:22px}
+@media(min-width:1000px){
+ .static-story .story-chapter{height:auto;min-height:0;padding:80px 40px;background:white;overflow:visible}
+ .static-story .chapter-hero{background:var(--green);padding-top:120px;overflow:clip}
+ .static-story .chapter-how{background:#EDF5F0}
+ .static-story .chapter-layout{display:flex;height:auto;min-height:0;align-items:center}
+ .static-story .chapter-title,.static-story .chapter-copy{width:100%;max-width:520px;transform:none;text-align:left;justify-self:auto}
+ .static-story .chapter-copy{margin-top:28px;padding:0}
+ .static-story .chapter-hero .chapter-copy{order:1!important}
+ .static-story .chapter-hero .device-visual{order:2!important;align-self:center;width:360px;margin-top:56px!important}
+ .static-story .chapter-earn .device-visual,.static-story .chapter-how .device-visual{order:-1!important;width:312px;transform:none;margin-bottom:48px!important}
+ .static-story .chapter-requirements,.static-story .chapter-footnote{position:static;margin:36px auto 0;max-width:520px;text-align:left;width:100%;flex-direction:column;gap:8px}
+ .static-story .story-footer{position:static;width:100%;margin-top:28px}.static-story .story-scroll{display:none}
+}
+
+@media(min-width:1800px){.chapter-layout{grid-template-columns:minmax(0,1fr) 480px minmax(0,1fr)}.chapter-hero .device-visual{width:min(480px,calc((100svh - var(--header-height) - 48px) * .461894))}}
+/* One app canvas, one size, one center axis in every chapter. */
+.product-story{--device-width:min(73vw,400px)}
+.product-story .story-chapter .device-visual{width:var(--device-width)}
+@media(max-width:359px){.product-story{--device-width:76vw}}
+@media(min-width:700px){.product-story{--device-width:340px}}
+@media(min-width:1000px){
+ .product-story{--device-width:min(400px,32vw,calc((100svh - var(--header-height) - 48px) * .461894))}
+ .story-chapter{opacity:1;background:#fff}
+ .chapter-hero{background:var(--brand-field)}.chapter-how{background:#EDF5F0}
+ .product-story.static-story{--device-width:360px}
+}
+@media(min-width:1500px){.product-story{--device-width:min(420px,calc((100svh - var(--header-height) - 48px) * .461894))}}
+@media(min-width:1800px){.product-story{--device-width:min(480px,calc((100svh - var(--header-height) - 48px) * .461894))}}
+@media(min-width:1000px){.chapter-earn{transform:translateY(100svh)}.chapter-how{transform:translateY(200svh)}}
+.chat-header{display:none;background:white;color:var(--ink)}
+.header.scrolled .chat-header{background:#f8f7fa}
+@media(min-width:700px){.chat-header{display:inline-flex}.chat-launcher{display:none}.chat-panel{top:calc(var(--header-height) + 12px);bottom:auto;max-height:calc(100dvh - var(--header-height) - 36px);transform-origin:top right}}
+.task-dialog-rate>span{font-size:14px;line-height:22px;color:#626262}
+.task-dialog .eyebrow{font-size:12px;line-height:18px;letter-spacing:.06em}
+.chat-bubble{font-size:16px;line-height:24px}
+.menu-bottom{align-items:center;font-size:14px;line-height:22px}
+.menu-dialog nav>a span{font-size:14px;line-height:22px}
+.footer-top{justify-content:flex-start;gap:24px}.footer-top>p{margin:0 auto 0 0}.back-top{margin-left:auto}
+/* Stationary app content under two intersecting rounded clipping windows.
+   Native clipping also works in the live preview browser. */
+.app-device{background:transparent;box-shadow:none;border-radius:calc(52.38px * var(--device-scale,.73))}
+.device-ui{border-radius:52.38px}
+@media(min-width:1000px){
+ .product-story:not(.static-story) .story-chapter .device-visual{transform:translateY(var(--phone-counter-y,0px))}
+ .product-story:not(.static-story) .device-visual{overflow:hidden;border-radius:calc(52.38px * var(--device-scale))}
+ .product-story:not(.static-story) .app-device{mask:none;transform:translateY(var(--screen-window-y,0px))}
+ .product-story:not(.static-story) .device-ui{transform:translateY(var(--phone-counter-y,0px)) scale(var(--device-scale))}
+ .chapter-earn{--phone-counter-y:-100svh;--screen-window-y:100svh}
+ .chapter-how{--phone-counter-y:-200svh;--screen-window-y:200svh}
+}
+/* Each supporting chapter owns its canvas and at least one full viewport. */
+.tasks-section{min-height:100svh}
+.faq-section{background:#fff;min-height:100svh}
+.footer{min-height:100svh}
+@media(min-width:1000px){
+ .tasks-section{display:grid;grid-template-rows:auto minmax(min-content,1fr) auto;align-items:center;row-gap:24px;padding:calc(var(--header-height) + 40px) 0 64px}
+ .tasks-section>.section-top,.tasks-section>.task-track,.tasks-section>.task-foot{width:100%;margin-block:0}
+ .tasks-section>.task-track{align-self:center}
+ .faq-section{align-items:center;padding-top:calc(var(--header-height) + 40px);padding-bottom:64px}
+ .faq-intro{position:static}
+ .footer{display:flex;flex-direction:column;padding-top:calc(var(--header-height) + 40px)}
+ .footer-wordmark{margin-top:auto;padding-top:48px}
+}
+@media(max-width:999px){.tasks-section,.faq-section{padding-top:80px;padding-bottom:80px}.footer{padding-top:64px}}
+.faq-search{background:var(--ui-surface,#F8F7FA)}
+.faq-question>.icon,.platform summary>.icon{transition:rotate 180ms var(--ease)}
+.faq-question[aria-expanded=true]>.icon,.platform details[open] summary>.icon{rotate:45deg}
+.footer{display:flex;flex-direction:column}
+.footer-bottom{margin-top:auto}
+.header.dark-section{background:#121212;color:white;border-bottom-color:#ffffff18}
+.header.dark-section .brand-icon{background:var(--green);color:#121212}
+.header.dark-section .brand-icon svg{--pupil:var(--green)}
+.header.dark-section .menu-button{background:#242429;color:white}
+@media(min-width:700px){.footer{padding-bottom:40px}}
+@media(prefers-reduced-motion:reduce){.faq-question>.icon,.platform summary>.icon{transition:none}}
+.action-arrow.page-up{rotate:-90deg}.action-arrow.page-down{rotate:90deg}
+.story-scroll{font-size:12px;line-height:20px}
+
+/* The user-facing app canvas has no simulated system chrome or outer glow. */
+.device-visual{filter:none}
+.phone-content{inset:0;padding:34px 24px 28px}
+.camera-device .phone-content{padding-top:34px}
+/* A common content edge anchors the story, examples and combined support area. */
+:root{--content-max:1600px;--section-space:80px}
+.chapter-layout{max-width:var(--content-max)}
+.tasks-section>.section-top,.tasks-section>.task-track,.tasks-section>.task-foot{max-width:calc(var(--content-max) + 2 * var(--gutter));margin-inline:auto;padding-inline:var(--gutter)}
+.footer{padding:var(--section-space) max(var(--gutter),calc((100vw - var(--content-max)) / 2)) calc(var(--dock-height) + env(safe-area-inset-bottom));min-height:0}
+.footer .faq-section{padding:0 0 var(--section-space);min-height:0;background:transparent;gap:48px;align-items:start;width:100%}
+.footer .faq-intro{position:static}
+.footer .faq-intro h2{color:#F5F5F7}
+.footer .faq-intro>p,.footer .faq-answer{color:#C7C7D0}
+.footer-top{padding:32px 0;border-top:1px solid #ffffff25;border-bottom:0}
+.footer-top>p{display:block;font-size:18px;line-height:28px;max-width:60%;color:#C7C7D0}
+.footer-links{padding-top:24px;padding-bottom:48px}
+.footer-bottom{margin-top:0}
+.footer-wordmark{font-size:clamp(100px,calc((100vw - 2 * var(--gutter)) * .335),536px);line-height:.85;letter-spacing:-.085em;margin:60px 0 0;padding:0;color:var(--green);align-self:center;max-width:100%}
+.faq-answer{display:block;height:0;overflow:hidden;opacity:1;visibility:hidden;padding:0;transition:none}
+.faq-answer.open{padding:0;opacity:1}
+.faq-answer>div{padding:0 24px 24px 0}
+.faq-extra{overflow:hidden}
+.faq-question>.icon{transition:rotate 620ms cubic-bezier(.22,1,.36,1)}
+html.anchoring-disclosure{scroll-behavior:auto!important;overflow-anchor:none}
+/* Translation changes copy inside fixed header tracks, never their geometry. */
+.header-actions{flex:none}
+.header .language-wrap{width:56px;flex:0 0 56px}
+.header .header-join{width:84px;min-width:84px;height:44px;flex:none;padding-inline:8px;white-space:nowrap}
+.header .brand{line-height:1}
+@media(max-width:359px){.header .header-join{width:68px;min-width:68px}.header .language-wrap{width:52px;flex-basis:52px}.header-actions{gap:4px}}
+@media(min-width:700px){
+ :root{--section-space:96px}
+ .header .language-wrap{width:64px;flex-basis:64px}
+ .header .header-join{width:176px;min-width:176px;height:46px}
+ .footer{padding-bottom:40px}
+}
+@media(min-width:1000px){
+ .footer{padding-top:calc(var(--header-height) + 40px)}
+ .footer .faq-section{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:8%;padding-bottom:96px}
+ .product-story:not(.static-story) .story-chapter{background:transparent}
+ .story-viewport{background:white;isolation:isolate}
+ .story-aperture{position:absolute;inset:0;z-index:-1;background:var(--brand-field);clip-path:inset(var(--aperture-y,0px) var(--aperture-x,0px) round var(--aperture-radius,0px));pointer-events:none}
+ .product-story:not(.static-story) .chapter-hero .chapter-layout,.product-story:not(.static-story) .chapter-hero .story-footer{opacity:var(--hero-opacity,1)}
+}
+@media(min-width:1180px){.header{gap:24px}.desktop-nav{display:flex;gap:24px}.desktop-nav>a{justify-content:center;text-align:center;white-space:nowrap}.header-actions{margin-left:0;gap:24px}.header .menu-button{margin-left:0}}
+@media(max-width:699px){.footer .faq-section{padding-bottom:64px}.footer-top>p{font-size:16px;line-height:24px}.footer-wordmark{margin-top:40px}.footer-top{gap:20px}.back-top{white-space:nowrap;font-size:12px}.footer-links{padding-bottom:36px}}
+
+/* Match the reference's full-width three-column composition and common edge. */
+:root{--gutter:16px}
+.chapter-layout{max-width:none}
+.tasks-section>.section-top,.tasks-section>.task-track,.tasks-section>.task-foot{max-width:none}
+.footer{padding-inline:var(--gutter)}
+.header .language-wrap{width:64px;flex-basis:64px}
+@media(min-width:700px){:root{--gutter:20px}}
+@media(min-width:1000px){
+ .product-story{--device-width:min(560px,32vw,calc(80svh * .461894),calc((100svh - 2 * var(--header-height) - 32px) * .461894))}
+ .story-chapter{padding:0 var(--gutter)}
+ .chapter-layout{grid-template-columns:minmax(0,1fr) var(--device-width) minmax(0,1fr);gap:clamp(20px,3vw,60px)}
+ .product-story:not(.static-story) .device-visual{align-self:center}
+ .product-story.static-story{--device-width:360px}
+ .tasks-section .section-top,.task-track,.task-foot{padding-inline:var(--gutter)}
+}
+@media(min-width:1500px){:root{--gutter:32px}}
+@media(min-width:1800px){:root{--gutter:40px}}
+@media(max-width:359px){.header .brand{font-size:22px}.header-actions{gap:4px}.header .language-wrap{width:64px;flex-basis:64px}}
+
+@media(min-width:1000px){
+ .product-story:not(.static-story) .chapter-hero .chapter-layout,.product-story:not(.static-story) .chapter-hero .story-footer{transform:translateY(var(--intro-counter-y,0px))}
+ .product-story:not(.static-story) .chapter-hero .device-visual,.product-story:not(.static-story) .chapter-hero .app-device{transform:none}
+ .product-story:not(.static-story) .chapter-hero .device-ui{transform:scale(var(--device-scale))}
+}
+
+.footer-wordmark{font-size:calc((100vw - 2 * var(--gutter)) * .378);line-height:.9;align-self:stretch;text-align:center}
+
+@media(max-width:359px){.header .header-join{width:64px;min-width:64px}}
+
+/* Flat separation preserves the screen silhouette without an outer glow. */
+.app-device::after{content:'';position:absolute;inset:1px;border:1px solid #E8E5ED;border-radius:calc(52.38px * var(--device-scale,.73) - 1px);pointer-events:none;z-index:10}
+.chat-bubble>span{display:block}
+
+.footer-wordmark{font-size:calc((100vw - 2 * var(--gutter)) * .375);line-height:1.05}
+
+.platform summary>.icon{transition:rotate 620ms cubic-bezier(.22,1,.36,1)}
+.platform details[open] summary[aria-expanded=false]>.icon{rotate:0deg}
+.platform summary[aria-expanded=true]>.icon{rotate:45deg}
+
+.footer-wordmark{line-height:1.15}
+
+.footer-wordmark>span{display:inline-block;font:inherit;letter-spacing:inherit;line-height:inherit;margin:0;vertical-align:baseline;white-space:nowrap;translate:var(--wordmark-shift,0px) 0}
+
+/* The app preview has a real bottom track; available space belongs to footage. */
+.tasks-device .phone-content{display:flex;flex-direction:column;padding:34px 24px 24px}
+.tasks-device :is(.app-heading,.phone-title,.app-tabs,.phone-mini,.phone-bottom){flex-shrink:0}
+.tasks-device .phone-task{flex:1;min-height:0;height:auto}
+.tasks-device .phone-mini{margin:18px 0;padding:0;min-height:54px}
+.tasks-device .phone-bottom{margin:0;padding-top:16px}
+/* Shared neutral inset material and readable ink distinguish white chapters. */
+.app-device .device-ui,.app-device .phone-content{background:#F8F7FA}
+.app-device::after{border-color:#C7C7D0}
+.phone-title>span,.pay-screen-title>span,.app-tabs,.phone-mini div>span,.phone-bottom,.camera-screen-note p,.camera-screen-bottom,.pay-example p,.pay-screen-foot{color:#6D6E73}
+.phone-bottom .current{color:#202124}
+.phone-bottom,.camera-screen-bottom,.pay-example{border-color:#D8D5DF}
+/* Currency, numeric range and unit use separate, centered tracks. */
+.pay-rate{padding:28px 26px}
+.pay-rate>span{font-size:13px;line-height:20px}
+.pay-rate>div{display:flex;align-items:center;gap:12px;white-space:nowrap;margin:24px 0}
+.pay-rate strong{font:400 64px/1.1 var(--font-numeric);letter-spacing:-.04em}
+.pay-rate .pay-currency,.pay-rate .pay-unit{font:500 16px/24px var(--font-ui);letter-spacing:0;flex:none}
+.pay-rate>p{font-size:12px;line-height:18px;margin:0;max-width:100%}
+
+/* Keep the other app canvases balanced over the same full-height frame. */
+.camera-device .phone-content{display:flex;flex-direction:column;padding-bottom:24px}
+.camera-device .phone-content>:not(.camera-screen-photo){flex-shrink:0}
+.camera-device .camera-screen-photo{height:auto;min-height:400px;flex:1}
+.camera-device .camera-screen-bottom{margin-top:0}
+.pay-device .phone-content{display:flex;flex-direction:column;justify-content:space-between;padding-bottom:40px}
+.pay-device .phone-content>*{flex-shrink:0}
+.pay-device .pay-screen-title{margin:24px 0}
+
+/* Native momentum settles on stable document geometry, never moving masks.
+   Oversized reading sections retain their complete native scroll range. */
+html.section-snap{scroll-snap-type:y proximity;scroll-padding-top:0}
+.story-snap-track{display:none}
+.story-chapter,.tasks-section,.footer{scroll-snap-align:start;scroll-snap-stop:normal}
+.static-story .story-chapter,.tasks-section{padding-top:max(80px,calc(var(--header-height) + 16px))}
+.static-story .chapter-hero{padding-top:max(120px,calc(var(--header-height) + 16px))}
+.footer{padding-top:max(var(--section-space),calc(var(--header-height) + 16px))}
+@media(min-width:1000px) and (min-height:650px){
+ html.section-snap{scroll-snap-type:y mandatory;scroll-padding-top:0}
+ .tasks-section,.footer{padding-top:calc(var(--header-height) + 40px)}
+ .product-story:not(.static-story) .story-chapter{scroll-snap-align:none}
+ .product-story:not(.static-story) .story-snap-track{position:absolute;inset:0;display:grid;grid-template-rows:repeat(3,1fr);pointer-events:none}
+ .story-snap-point{scroll-snap-align:start;scroll-snap-stop:normal}
+}
+html.section-snap.anchoring-disclosure{scroll-snap-type:none!important}
+html.section-snap.footer-scroll{scroll-snap-type:none!important}
+@media(prefers-reduced-motion:reduce){html.section-snap{scroll-snap-type:none}}
+
+/* Sentence-case labels follow the same readable proportional text rhythm. */
+.eyebrow,.section-top .eyebrow,.faq-intro .eyebrow,.task-dialog .eyebrow{font-size:13px;line-height:20px;letter-spacing:0;text-transform:none}
+.pay-device .app-heading{font-size:12px;letter-spacing:0}
+.pay-formula>span{font-size:12px;line-height:18px;letter-spacing:0;color:#6D6E73}
+@media(min-width:700px){.chapter-footnote,.static-story .chapter-footnote,.legal-note{max-width:none}}
+@media(min-width:1000px){.product-story:not(.static-story) .chapter-footnote{left:var(--gutter);right:var(--gutter)}}
+/* A tighter closing rhythm brings the brand artwork into the footer landing. */
+.footer .faq-section{padding-bottom:64px}
+.footer-top{padding-block:24px}
+.footer-links{padding-block:32px}
+.footer-wordmark{line-height:.85;margin-top:24px}
+@media(max-width:699px){.footer .faq-section{padding-bottom:48px}.footer-wordmark{margin-top:20px}}
+
+/* Opening-story actions share the phone's axis and lower edge. */
+.story-footer,.static-story .story-footer{position:relative;inset:auto;display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;width:var(--device-width);margin:24px auto 0}
+.story-scroll,.static-story .story-scroll{grid-column:2;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;font-size:13px;line-height:20px;letter-spacing:0;white-space:nowrap}
+.story-footer .media-toggle{grid-column:3;grid-row:1;width:44px;height:44px}
+@media(min-width:1000px){
+ .product-story:not(.static-story) .story-footer{position:absolute;inset:0;display:block;width:auto;margin:0;pointer-events:none}
+ .product-story:not(.static-story) .story-scroll{position:absolute;left:50%;bottom:20px;translate:-50% 0;pointer-events:auto}
+ .product-story:not(.static-story) .story-footer .media-toggle{position:absolute;left:calc(50% + var(--device-width) / 2 + 16px);top:calc(50% + var(--device-width) * 2.165 / 2 - 44px);pointer-events:auto}
+ .footer{padding-bottom:0}
+ .footer-wordmark{height:min(20vw,480px);overflow:hidden;flex:none}
+}
+
+/* Frogku's requested green identity maps through the existing shared controls. */
+.brand-icon{background:var(--ink);color:var(--green)}
+.brand-icon svg{--pupil:var(--ink)}
+.header:not(.scrolled):not(.dark-section){color:var(--ink)}
+.header.scrolled .header-join{background:var(--green);color:var(--ink)}
+.header.dark-section .brand-icon,.footer .brand-icon{color:var(--ink)}
+.chapter-hero .chapter-title,.chapter-hero .chapter-copy,.story-scroll{color:var(--ink)}
+.pay-rate{color:var(--ink)}
+.menu-dialog{color:var(--ink)}
+.menu-dialog nav>a{border-bottom-color:#12121240}
+.avatar{background:var(--green-deep);color:white}
+.application-dialog::backdrop,.task-dialog::backdrop{background:#07120de0;backdrop-filter:blur(1px)}
+
+/* A branded introduction and a calm field track share one responsive surface. */
+#application-dialog{width:min(880px,calc(100% - 32px));max-width:calc(100% - 32px);max-height:calc(100dvh - 32px)}
+#application-dialog .application-dialog-header{padding:24px 28px}
+#application-dialog .join-form-shell{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.3fr);gap:28px;padding:0 28px 28px;align-items:start}
+#application-dialog .form-heading{background:var(--green-deep);color:white;padding:28px;border-radius:20px;align-self:stretch;min-width:0}
+#application-dialog .application-frog{width:72px;height:72px;margin-bottom:36px;--pupil:var(--green-deep)}
+#application-dialog .form-heading .eyebrow{display:block;font-size:13px;line-height:20px;margin-bottom:16px;color:#fff}
+#application-dialog .form-heading h3{display:block;font-size:34px;line-height:1.08;letter-spacing:-.055em}
+#application-dialog .form-heading>p{font-size:15px;line-height:23px;color:white;margin:20px 0 0}
+#qualification-form label{font-size:14px;line-height:22px}
+#qualification-form .form-check{font-size:14px;line-height:22px;color:#626262}
+#qualification-form .form-local-note{font-size:12px;line-height:20px;color:#6D6E73}
+#qualification-form .form-status:empty{display:none}
+.qualification-result{min-height:0;padding-block:24px}
+@media(max-width:699px){
+ #application-dialog{width:calc(100% - 24px);max-width:calc(100% - 24px);max-height:calc(100dvh - 24px)}
+ #application-dialog .application-dialog-header{padding:20px}
+ #application-dialog .join-form-shell{display:flex;flex-direction:column;gap:24px;padding:0 20px 24px}
+ #application-dialog .form-heading{width:100%;padding:24px}
+ #application-dialog .application-frog{float:right;width:44px;height:44px;margin:0 0 12px 16px}
+ #application-dialog .form-heading .eyebrow{margin-bottom:12px}
+ #application-dialog .form-heading h3{font-size:30px}
+ #application-dialog .form-heading>p{margin-top:14px;font-size:14px;line-height:21px}
+ #qualification-form{width:100%}
+}
+
+/* Downloads are a complete page chapter with the same gutter and snap landing. */
+.download-section{min-height:100svh;scroll-snap-align:start;background:var(--brand-field);color:var(--ink);padding:calc(var(--header-height) + 40px) var(--gutter) 64px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:8%;align-items:center}
+.download-intro h2{font-size:clamp(42px,4.1vw,66px);max-width:560px;margin-bottom:28px}
+.download-intro>p{font-size:17px;line-height:26px;max-width:420px}
+.download-content{min-width:0}
+.download-section .download-platforms{gap:24px}
+.download-section .platform{background:#fff;color:var(--ink);padding:28px;border-radius:24px}
+.download-section .platform-icon{margin-bottom:32px;color:var(--ui-brand-ink)}
+.download-section .platform h3{font-size:28px;line-height:34px;letter-spacing:-.04em}
+.download-section .platform>p{font-size:13px;line-height:20px;color:#6D6E73;margin:10px 0 28px}
+.download-section .platform>.pill{background:var(--green);color:var(--ink);border-color:transparent}
+.download-section .platform>.pill:hover{background:var(--green-hover)}
+.download-section .platform summary{font-size:14px;line-height:22px;margin-top:12px;padding-top:12px}
+.download-section .platform ol{font-size:14px;line-height:22px;margin-top:20px;color:#626262}
+.download-section .download-note{font-size:13px;line-height:20px;margin-top:24px;color:var(--ink)}
+@media(max-width:1179px){.download-section{grid-template-columns:1fr;gap:48px}.download-intro>p{max-width:640px}}
+@media(max-width:699px){.download-section{padding-top:calc(var(--header-height) + 32px);padding-bottom:64px;gap:40px}.download-section .download-platforms{grid-template-columns:1fr;gap:20px}.download-section .platform{padding:24px}.download-intro>p{font-size:16px;line-height:24px}}
+
+/* Chat stays in the lower corner, above the mobile application dock. */
+.chat-launcher{display:flex;background:var(--green);color:var(--ink);border:1px solid #ffffff50}
+.chat-launcher:hover{background:var(--green-hover)}
+.chat-avatar{background:var(--green);color:var(--ink);--pupil:var(--green)}
+.chat-panel{top:auto;right:var(--gutter);transform-origin:bottom right}
+@media(min-width:700px){.chat-panel{top:auto;bottom:88px;max-height:calc(100dvh - 112px)}.chat-launcher{right:24px;bottom:24px}}
+
+.footer-wordmark{color:var(--green-lime)}
+.footer-wordmark>span{transition:transform 180ms var(--ease),color 180ms var(--ease)}
+@media(hover:hover){.footer-wordmark:hover>span{transform:translateY(-6px);color:var(--brand-field)}}
+.footer-links a,.footer-bottom a,.back-top{background-image:none;transition:color 180ms var(--ease);text-decoration:none}
+.footer-links a:is(:hover,:focus-visible),.footer-bottom a:is(:hover,:focus-visible),.back-top:is(:hover,:focus-visible){color:var(--green-lime)}
+@media(prefers-reduced-motion:reduce){.footer-wordmark>span{transition:none}.footer-wordmark:hover>span{transform:none}.footer-links a,.footer-bottom a,.back-top{transition:none}}
+@media(min-width:700px){.task-foot p{max-width:none}}
+.header:not(.scrolled):not(.dark-section) .header-join,.chapter-hero .chapter-copy>.pill{background:var(--green-deep);color:white}
+.mobile-apply .pill,.chapter-actions>.pill.dark{background:var(--green);color:var(--ink)}
+.mobile-apply .pill:hover,.chapter-actions>.pill.dark:hover{background:var(--green-hover)}
+
+.chat-avatar svg{--pupil:var(--green)}
+.chat-bubble.user{background:var(--green-deep);color:white}
+#qualification-form input::placeholder{color:#6D6E73;opacity:1}
+.onboarding-steps>li>span,.onboarding-steps p,.chapter-requirements{color:#626262}
+.phone-mini>.mini-plus{width:18px;height:18px;flex:none}
+
+.download-section .platform-mark{display:block;width:34px;height:34px;object-fit:contain}
+
+/* Footer reading roles keep the same scale across responsive layouts. */
+.footer-links>div:not(.footer-language){font-size:16px;line-height:24px}
+.footer-links>div>a{min-height:44px;line-height:24px}
+.footer-links>div>span{font-size:14px;line-height:22px}
+.footer-bottom,.legal-note,.back-top{font-size:14px;line-height:22px}
+.language-segments button{font-size:14px;line-height:22px;min-height:44px}
+
+/* One section palette and text rhythm across every responsive composition. */
+:root{--section-paper:#fff;--section-mint:#EDF5F0;--section-dark:#121212}
+.product-story .chapter-hero,.download-section{background:var(--brand-field);color:var(--ink)}
+.product-story .chapter-earn{background:var(--section-paper);color:var(--ink)}
+.product-story .chapter-how{background:var(--section-mint);color:var(--ink)}
+.product-story .story-chapter.chapter-how{background:var(--section-mint)}
+.tasks-section,.footer{background:var(--section-dark);color:white}
+.header[data-surface=green]{background:var(--brand-field);color:var(--ink);border-bottom-color:#12121218}
+.header[data-surface=mint]{background:var(--section-mint);color:var(--ink);border-bottom-color:#12121218}
+.header:is([data-surface=green],[data-surface=mint]) .header-join{background:var(--green-deep);color:white}
+:where(p,li,.form-check){text-wrap:pretty}
+:where(h1,h2,h3),.chapter-copy>p,.chapter-title>p,.section-top-side>p,.download-intro>p,.chapter-footnote,.task-foot>p,.legal-note,.camera-screen-note p,.pay-example p,.sample-card p{text-wrap:balance}
+
+/* Desktop keeps the original card composition and inline installation guide. */
+.download-section .installation-trigger{display:none}
+.installation-dialog{--guide-inset:40px;width:min(560px,calc(100% - 32px));max-width:calc(100% - 32px);max-height:calc(100dvh - 32px)}
+#installation-dialog .application-dialog-header{padding:var(--guide-inset);align-items:flex-start}
+#installation-dialog .application-dialog-header>span{min-width:0;flex:1}
+.installation-dialog::backdrop{background:#07120de0;backdrop-filter:blur(1px)}
+.installation-body{padding:0 var(--guide-inset) var(--guide-inset)}
+.installation-platform{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.installation-platform img{width:34px;height:34px}
+.installation-platform h2{font-size:28px;line-height:34px;margin:0}
+.installation-body ol{display:grid;gap:24px;margin:0;padding-left:24px;color:#626262;font-size:16px;line-height:25px}
+.installation-body li{padding-left:8px}
+@media(max-width:699px){.installation-dialog{--guide-inset:32px}}
+.installation-body a{color:var(--ui-brand-ink);text-decoration:underline;text-underline-offset:3px}
+@media(min-width:1000px){
+ .chapter-how .chapter-actions{display:grid;grid-template-columns:minmax(0,1fr);width:max-content;max-width:100%;justify-items:stretch;margin-top:40px}
+ .chapter-how .chapter-actions>:is(.pill,.install-trigger){width:100%}
+}
+
+/* One menu rhythm across the marketing and legal documents. */
+.menu-dialog[open]{--menu-inset:max(20px,var(--gutter));display:flex;flex-direction:column;gap:0;padding:max(var(--menu-inset),env(safe-area-inset-top)) max(var(--menu-inset),env(safe-area-inset-right)) max(var(--menu-inset),env(safe-area-inset-bottom)) max(var(--menu-inset),env(safe-area-inset-left));height:100dvh;max-height:100dvh;overflow:auto}
+.menu-top{flex:none}
+.menu-dialog nav{flex:none;width:100%;max-width:none;margin:48px auto}
+.menu-dialog nav>a{min-height:88px;padding:20px 0;gap:24px;align-items:baseline;font-size:42px;line-height:48px;transition:color 180ms var(--ease)}
+.menu-dialog nav>a:hover{padding-left:0;color:var(--green-deep)}
+.menu-dialog nav>a span{flex:none;width:44px;text-align:center}
+.menu-dialog .menu-bottom{flex:none;width:100%;max-width:none;margin:auto auto 0;padding-top:32px;gap:24px;align-items:center}
+@media(min-width:1000px){
+ .header .language-wrap{width:96px;flex-basis:96px}
+ .menu-dialog[open]{padding-top:0;padding-inline:var(--gutter)}
+ .menu-top{height:calc(var(--header-height) - 1px)}
+ .menu-dialog nav{margin-top:calc(var(--menu-inset) + 1px - 20px);margin-bottom:var(--menu-inset)}
+}
+@media(max-width:699px){
+ .menu-dialog nav{margin:32px auto}
+ .menu-dialog nav>a{min-height:66px;padding:16px 0;font-size:28px;line-height:34px;gap:20px}
+ .menu-dialog .menu-bottom{padding-top:24px;gap:12px;align-items:flex-start}
+}
+@media(min-width:700px){
+ #application-dialog .form-heading{display:flex;flex-direction:column}
+ #application-dialog .form-heading>p{margin-top:auto;padding-top:28px}
+}
+/* Shared segmented-control material makes the illustrated app tabs distinct. */
+.app-task-tabs{display:flex;align-items:center;gap:4px;padding:4px;border-radius:999px;background:#E8E5ED;isolation:isolate}
+.app-task-tabs>span{display:flex;align-items:center;justify-content:center;min-height:40px;padding:10px 14px;border-radius:999px;color:#626262;font:500 12px/20px var(--font-ui);white-space:nowrap}
+.app-task-tabs>.active{background:var(--green);color:var(--ink)}
+
+/* Availability uses the same native dialog shell, controls and popup owner. */
+#coverage-dialog{width:min(520px,calc(100% - 32px));max-width:calc(100% - 32px);max-height:calc(100dvh - 32px);padding:0}
+#coverage-dialog .application-dialog-header{padding:24px;font-size:20px;line-height:28px;gap:16px;align-items:flex-start}
+#coverage-dialog .application-dialog-header>span{min-width:0;flex:1}
+.coverage-content{display:grid;gap:16px;padding:0 24px 24px;font-size:16px;line-height:24px}
+.coverage-content>p{margin:0;color:var(--ui-muted)}
+.coverage-content>p:first-child{color:var(--ui-fg)}
+.coverage-actions{display:grid;gap:12px;margin-top:8px}
+.coverage-actions>a,.coverage-actions>button{width:100%;justify-content:center;min-height:48px}
+@media(max-width:699px){#coverage-dialog .application-dialog-header{padding:16px}.coverage-content{padding:0 16px 16px}}
