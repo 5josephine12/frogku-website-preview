@@ -1,6 +1,6 @@
 // Adapter around the gallery's actual PlaybackButton and PlaybackProgress owners.
-const runtime=import('./vendor/media/native-controls.js');
-const seekModule=()=>import('./vendor/media/modules/playback-seek.js');
+const runtime=import('./vendor/media/native-controls.js?v=d74b419c1354');
+const seekModule=()=>import('./vendor/media/modules/playback-seek.js?v=d74b419c1354');
 export async function mountAmbientPlayback(button,playing){
  const {mountPlaybackButton}=await runtime;if(!button.isConnected)return null;
  button.dataset.iconOnly='';

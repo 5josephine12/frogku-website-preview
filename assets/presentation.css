@@ -748,3 +748,11 @@ html.section-snap.footer-scroll{scroll-snap-type:none!important}
 .coverage-actions{display:grid;gap:12px;margin-top:8px}
 .coverage-actions>a,.coverage-actions>button{width:100%;justify-content:center;min-height:48px}
 @media(max-width:699px){#coverage-dialog .application-dialog-header{padding:16px}.coverage-content{padding:0 16px 16px}}
+
+.chapter-hero .chapter-title>p{color:var(--ink)}
+
+/* Both translated headlines share a reserved footprint, keeping cards still. */
+.rotating-heading{display:grid;max-width:18ch}
+.rotating-heading>span{grid-area:1/1;align-self:center}
+.rotating-heading>[data-heading-measure]{visibility:hidden;pointer-events:none;user-select:none}
+@media(max-width:999px){.rotating-heading{margin-inline:auto}}

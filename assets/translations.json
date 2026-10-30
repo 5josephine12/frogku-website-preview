@@ -1,8 +1,4 @@
 {
-  "Frogku — Hidup ala sultan, modal cuci piring.": {
-    "en": "Frogku — Live like royalty. Start with the dishes.",
-    "zh": "Frogku — 做好家务，也能赚取报酬。"
-  },
   "Langsung ke konten": {
     "en": "Skip to content",
     "zh": "跳转到正文"
@@ -775,10 +771,6 @@
     "en": "Rp 0–100,000 per hour of recordings, depending on video quality. Better recordings can earn more. Only approved footage is paid. See the app for each task’s details.",
     "zh": "每小时录像可获得 0–100,000 印尼盾，具体取决于视频质量。质量越好，报酬可能越高。仅通过审核的录像可获得报酬，每项任务详情请查看应用。"
   },
-  "Ini penipuan bukan?": {
-    "en": "Is this a scam?",
-    "zh": "这是骗局吗？"
-  },
   "Apakah saya harus membeli device sendiri?": {
     "en": "Do I need to buy the device myself?",
     "zh": "需要自己购买设备吗？"
@@ -1295,14 +1287,6 @@
     "en": "The video could not play. Try again.",
     "zh": "视频暂时无法播放，请重试。"
   },
-  "Hidup ala sultan,": {
-    "en": "Live like royalty,",
-    "zh": "过上帝王生活，"
-  },
-  "modal cuci piring.": {
-    "en": "just do the dishes.",
-    "zh": "从洗碗开始。"
-  },
   "Mahkotanya": {
     "en": "The crown?",
     "zh": "你的王冠，"
@@ -1475,10 +1459,6 @@
     "en": "It’s a head-mounted camera from Frogku. Same regal feeling, except this one helps you earn.",
     "zh": "这是 Frogku 的头戴相机。戴起来像顶皇冠，还能帮你赚取报酬。"
   },
-  "Bukan. Gak ada biaya daftar, gak minta transfer, kameranya dipinjemin gratis. Kalau ada yang minta kamu bayar atas nama Frogku, itu bukan kami. Laporin ke adminfrogku@gmail.com.": {
-    "en": "No. There’s no registration fee, no transfer required, and the camera is free to borrow. If someone asks you to pay in Frogku’s name, that isn’t us. Report it to adminfrogku@gmail.com.",
-    "zh": "不是。注册免费，不要求转账，相机免费借用。如果有人以 Frogku 名义向你收费，那不是我们。请向 adminfrogku@gmail.com 举报。"
-  },
   "Rekam pekerjaan di salon, dapur, atau bengkel dengan kamera Frogku. Dapatkan bayaran untuk setiap jam rekaman yang lolos peninjauan.": {
     "en": "Record your work at the salon, kitchen or workshop with the Frogku camera. Get paid for every approved hour of footage.",
     "zh": "使用 Frogku 相机记录你在沙龙、厨房或车间的工作。每小时通过审核的录像都能获得报酬。"
@@ -1514,5 +1494,37 @@
   "Email admin": {
     "en": "Email our team",
     "zh": "联系管理员"
+  },
+  "Frogku — Cuan kapan aja, di mana aja. Jalanin aja kayak biasa.": {
+    "en": "Frogku — Earn anytime, anywhere. Just do your thing",
+    "zh": "Frogku — 随时随地赚取收入。照常做你的事。"
+  },
+  "Cuan kapan aja,": {
+    "en": "Earn anytime,",
+    "zh": "随时随地"
+  },
+  "di mana aja.": {
+    "en": "anywhere.",
+    "zh": "赚取收入。"
+  },
+  "Jalanin aja kayak biasa.": {
+    "en": "Just do your thing",
+    "zh": "照常做你的事。"
+  },
+  "Ada cuan di keseharianmu.": {
+    "en": "Find the value in your everyday.",
+    "zh": "发现日常生活的价值。"
+  },
+  "Makin unik, makin cuan.": {
+    "en": "The more unique, the more you earn.",
+    "zh": "越独特，赚得越多。"
+  },
+  "Cara Memastikan Frogku Asli": {
+    "en": "How do I verify Frogku authenticity?",
+    "zh": "如何验证 Frogku 的真伪？"
+  },
+  "Unduh aplikasi hanya dari situs resmi Frogku atau TestFlight resmi yang ditautkan di sini. Daftar gratis, tidak perlu transfer, dan kamera dipinjamkan gratis. Kalau ada yang meminta pembayaran atas nama Frogku, hubungi adminfrogku@gmail.com untuk verifikasi.": {
+    "en": "Download the app only from the official Frogku website or the official TestFlight linked here. Registration is free, no transfer is required, and the camera is loaned for free. If anyone asks for payment in Frogku’s name, contact adminfrogku@gmail.com to verify.",
+    "zh": "请仅通过 Frogku 官方网站或此处链接的官方 TestFlight 下载应用。注册免费，无需转账，摄像机也可免费借用。如果有人以 Frogku 的名义要求付款，请联系 adminfrogku@gmail.com 核实。"
   }
 }

@@ -50,8 +50,8 @@
     },
     {
       "category": "Mulai",
-      "q": "Ini penipuan bukan?",
-      "a": "Bukan. Gak ada biaya daftar, gak minta transfer, kameranya dipinjemin gratis. Kalau ada yang minta kamu bayar atas nama Frogku, itu bukan kami. Laporin ke adminfrogku@gmail.com.",
+      "q": "Cara Memastikan Frogku Asli",
+      "a": "Unduh aplikasi hanya dari situs resmi Frogku atau TestFlight resmi yang ditautkan di sini. Daftar gratis, tidak perlu transfer, dan kamera dipinjamkan gratis. Kalau ada yang meminta pembayaran atas nama Frogku, hubungi adminfrogku@gmail.com untuk verifikasi.",
       "keywords": [
         "penipuan",
         "tipu",
@@ -59,7 +59,16 @@
         "biaya",
         "gratis",
         "transfer",
-        "scam"
+        "scam",
+        "asli",
+        "keaslian",
+        "verifikasi",
+        "authenticity",
+        "verify",
+        "official",
+        "resmi",
+        "验证",
+        "真伪"
       ]
     },
     {

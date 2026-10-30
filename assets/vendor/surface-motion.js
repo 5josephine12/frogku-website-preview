@@ -1,5 +1,5 @@
-import {popupFrames,popupOptions} from './interaction-motion.js';
-import {motionDisabled,cardMotionPreference} from './card-motion.js';
+import {popupFrames,popupOptions} from './interaction-motion.js?v=d74b419c1354';
+import {motionDisabled,cardMotionPreference} from './card-motion.js?v=d74b419c1354';
 // Shared with the CSS tokens used by invitations and experiment disclosures.
 export const surfaceMotion={ease:'cubic-bezier(.22,1,.36,1)',enter:420,exit:280,disclosure:620};
 const surfaces=new WeakMap();

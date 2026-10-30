@@ -1,8 +1,8 @@
-import {transitionTheme} from './vendor/theme-transition.js';
+import {transitionTheme} from './vendor/theme-transition.js?v=d74b419c1354';
 let language='id';
 try{const saved=localStorage.getItem('frogku-language');if(['id','en','zh'].includes(saved))language=saved;}catch{}
 if(document.body.classList.contains('legal-page')){const specified=new URLSearchParams(location.search).get('lang');if(['id','en','zh'].includes(specified))language=specified;}
-const dictionaries=await fetch('assets/translations.json').then(r=>{if(!r.ok)throw new Error('Translations unavailable');return r.json();});
+const dictionaries=await fetch('assets/translations.json?v=d74b419c1354').then(r=>{if(!r.ok)throw new Error('Translations unavailable');return r.json();});
 const textSources=new WeakMap(),attributeSources=new WeakMap();
 export const getLang=()=>language;
 export function t(value){
@@ -30,7 +30,7 @@ export function translate(root=document.body){
   }
  });
  document.documentElement.lang=language==='zh'?'zh-CN':language;
- document.title=document.body.dataset.page==='privacy'?t('Kebijakan privasi')+' · Frogku':document.body.dataset.page==='terms'?t('Ketentuan pengguna')+' · Frogku':t('Frogku — Hidup ala sultan, modal cuci piring.');
+ document.title=document.body.dataset.page==='privacy'?t('Kebijakan privasi')+' · Frogku':document.body.dataset.page==='terms'?t('Ketentuan pengguna')+' · Frogku':t('Frogku — Cuan kapan aja, di mana aja. Jalanin aja kayak biasa.');
  const select=document.querySelector('#language');if(select)select.value=language;document.querySelectorAll('[data-language]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.language===language)));
 }
 let requestedLanguage=language;

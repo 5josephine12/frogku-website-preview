@@ -1,4 +1,4 @@
-import {interactionMotion,popupProgress} from './vendor/interaction-motion.js';
+import {interactionMotion,popupProgress} from './vendor/interaction-motion.js?v=d74b419c1354';
 // Early cross-document lifecycle adapted from the shared gallery owner. The
 // caller requests a spring/crossfade rather than directional page transport.
 const root=document.documentElement,preference=matchMedia('(prefers-reduced-motion:reduce)');

@@ -1,17 +1,18 @@
-import {ensureInputModality} from './vendor/input-modality.js';
-import {popupFrames,popupOptions} from './vendor/interaction-motion.js';
-import {translate,t,getLang,setLanguage} from './i18n.js';
-import {mountProductStory} from './product-story.js';
-import {mountWordmark,mountOpticalLabel} from './wordmark.js';
-import {mountTaskPreviews} from './task-previews.js';
-import {mountSegmentedPill} from './vendor/segmented-pill.js';
-import {mountSelect,closeSelects} from './vendor/select.js';
-import {actionArrowMarkup} from './vendor/action-arrow.js';
-import {mountAmbientPlayback,mountTaskPlayback} from './media-player.js';
-import {applicationDraft,isServiceArea} from './application-draft.js';
-import {faqAnswer} from './faq-answer.js';
-import {animateExpansion,animateSurfaceContent,contentTransition,mountDisclosureMotion} from './vendor/surface-motion.js';
-import {anchorDisclosureCollapse} from './vendor/disclosure-scroll.js';
+import {ensureInputModality} from './vendor/input-modality.js?v=d74b419c1354';
+import {popupFrames,popupOptions} from './vendor/interaction-motion.js?v=d74b419c1354';
+import {translate,t,getLang,setLanguage} from './i18n.js?v=d74b419c1354';
+import {mountProductStory} from './product-story.js?v=d74b419c1354';
+import {mountWordmark,mountOpticalLabel} from './wordmark.js?v=d74b419c1354';
+import {mountHeadingRotation} from './heading-rotation.js?v=d74b419c1354';
+import {mountTaskPreviews} from './task-previews.js?v=d74b419c1354';
+import {mountSegmentedPill} from './vendor/segmented-pill.js?v=d74b419c1354';
+import {mountSelect,closeSelects} from './vendor/select.js?v=d74b419c1354';
+import {actionArrowMarkup} from './vendor/action-arrow.js?v=d74b419c1354';
+import {mountAmbientPlayback,mountTaskPlayback} from './media-player.js?v=d74b419c1354';
+import {applicationDraft,isServiceArea} from './application-draft.js?v=d74b419c1354';
+import {faqAnswer} from './faq-answer.js?v=d74b419c1354';
+import {animateExpansion,animateSurfaceContent,contentTransition,mountDisclosureMotion} from './vendor/surface-motion.js?v=d74b419c1354';
+import {anchorDisclosureCollapse} from './vendor/disclosure-scroll.js?v=d74b419c1354';
 ensureInputModality();
 mountWordmark();
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -22,6 +23,7 @@ const chatHistory=[];
 document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>setLanguage(button.dataset.language)));
 $('#language').addEventListener('change',e=>setLanguage(e.target.value));
 translate();
+mountHeadingRotation($('#tasks-title'),t);
 mountOpticalLabel('.download-intro>.eyebrow');
 // Compact labels preserve the full category names for assistive technology.
 const compactFaqLabels={id:['Semua','Mulai','Bayaran','Privasi'],en:['All','Start','Pay','Privacy'],zh:['全部','开始','报酬','隐私']};
@@ -238,7 +240,7 @@ $('.chat-form').addEventListener('submit',e=>{e.preventDefault();sendChat($('#ch
 $('.chat-suggestions').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>sendChat(b.textContent)));
 window.addEventListener('frogku:language',()=>{if(content){renderFaqs();translate();}videos.forEach(syncVideo);});
 async function loadContent(){
- try{const response=await fetch('assets/content.json');if(!response.ok)throw new Error('No content');content=await response.json();renderTasks();renderFaqs();
+ try{const response=await fetch('assets/content.json?v=d74b419c1354');if(!response.ok)throw new Error('No content');content=await response.json();renderTasks();renderFaqs();
  const activity=$('#activity-options');activity.innerHTML='<option value="">Pilih aktivitasmu</option>'+content.activities.map((name,i)=>`<option value="${i}">${name}</option>`).join('');translate(activity.parentElement);
  document.querySelectorAll('a.signup').forEach(a=>a.href=content.signup);}
  catch{for(const selector of ['#task-track','#faq-list']){$(selector).innerHTML=`<div class="load-error"><p>Konten belum bisa dimuat.</p><button class="ui-secondary">Coba lagi</button></div>`;$(selector).querySelector('button').addEventListener('click',loadContent);}translate();}

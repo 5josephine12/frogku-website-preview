@@ -1,7 +1,7 @@
 // Native-DOM adapter of shared product.tsx Select + PopupSurface.
 // Retains the native form value, label focus, top-layer ancestry, placement,
 // keyboard/typeahead, mutation/reset synchronization and exact popup poses.
-import {interactionMotion,popupProgress,popupPoses} from './interaction-motion.js';
+import {interactionMotion,popupProgress,popupPoses} from './interaction-motion.js?v=d74b419c1354';
 const mounted=new Set();
 export const closeSelects=()=>mounted.forEach(control=>control.close());
 export function mountSelect(select,{label,compact=false}={}){
