@@ -1,18 +1,18 @@
-import {ensureInputModality} from './vendor/input-modality.js?v=d74b419c1354';
-import {popupFrames,popupOptions} from './vendor/interaction-motion.js?v=d74b419c1354';
-import {translate,t,getLang,setLanguage} from './i18n.js?v=d74b419c1354';
-import {mountProductStory} from './product-story.js?v=d74b419c1354';
-import {mountWordmark,mountOpticalLabel} from './wordmark.js?v=d74b419c1354';
-import {mountHeadingRotation} from './heading-rotation.js?v=d74b419c1354';
-import {mountTaskPreviews} from './task-previews.js?v=d74b419c1354';
-import {mountSegmentedPill} from './vendor/segmented-pill.js?v=d74b419c1354';
-import {mountSelect,closeSelects} from './vendor/select.js?v=d74b419c1354';
-import {actionArrowMarkup} from './vendor/action-arrow.js?v=d74b419c1354';
-import {mountAmbientPlayback,mountTaskPlayback} from './media-player.js?v=d74b419c1354';
-import {applicationDraft,isServiceArea} from './application-draft.js?v=d74b419c1354';
-import {faqAnswer} from './faq-answer.js?v=d74b419c1354';
-import {animateExpansion,animateSurfaceContent,contentTransition,mountDisclosureMotion} from './vendor/surface-motion.js?v=d74b419c1354';
-import {anchorDisclosureCollapse} from './vendor/disclosure-scroll.js?v=d74b419c1354';
+import {ensureInputModality} from './vendor/input-modality.js?v=27fca7142643';
+import {popupFrames,popupOptions} from './vendor/interaction-motion.js?v=27fca7142643';
+import {translate,t,getLang,setLanguage} from './i18n.js?v=27fca7142643';
+import {mountProductStory} from './product-story.js?v=27fca7142643';
+import {mountWordmark,mountOpticalLabel} from './wordmark.js?v=27fca7142643';
+import {mountHeadingRotation} from './heading-rotation.js?v=27fca7142643';
+import {mountTaskPreviews} from './task-previews.js?v=27fca7142643';
+import {mountSegmentedPill} from './vendor/segmented-pill.js?v=27fca7142643';
+import {mountSelect,closeSelects} from './vendor/select.js?v=27fca7142643';
+import {actionArrowMarkup} from './vendor/action-arrow.js?v=27fca7142643';
+import {mountAmbientPlayback,mountTaskPlayback} from './media-player.js?v=27fca7142643';
+import {applicationDraft,isServiceArea} from './application-draft.js?v=27fca7142643';
+import {faqAnswer} from './faq-answer.js?v=27fca7142643';
+import {animateExpansion,animateSurfaceContent,contentTransition,mountDisclosureMotion} from './vendor/surface-motion.js?v=27fca7142643';
+import {anchorDisclosureCollapse} from './vendor/disclosure-scroll.js?v=27fca7142643';
 ensureInputModality();
 mountWordmark();
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -240,7 +240,7 @@ $('.chat-form').addEventListener('submit',e=>{e.preventDefault();sendChat($('#ch
 $('.chat-suggestions').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>sendChat(b.textContent)));
 window.addEventListener('frogku:language',()=>{if(content){renderFaqs();translate();}videos.forEach(syncVideo);});
 async function loadContent(){
- try{const response=await fetch('assets/content.json?v=d74b419c1354');if(!response.ok)throw new Error('No content');content=await response.json();renderTasks();renderFaqs();
+ try{const response=await fetch('assets/content.json?v=27fca7142643');if(!response.ok)throw new Error('No content');content=await response.json();renderTasks();renderFaqs();
  const activity=$('#activity-options');activity.innerHTML='<option value="">Pilih aktivitasmu</option>'+content.activities.map((name,i)=>`<option value="${i}">${name}</option>`).join('');translate(activity.parentElement);
  document.querySelectorAll('a.signup').forEach(a=>a.href=content.signup);}
  catch{for(const selector of ['#task-track','#faq-list']){$(selector).innerHTML=`<div class="load-error"><p>Konten belum bisa dimuat.</p><button class="ui-secondary">Coba lagi</button></div>`;$(selector).querySelector('button').addEventListener('click',loadContent);}translate();}

@@ -5,19 +5,24 @@ export function mountProductStory({reduced,onChapterChange}){
  const root=document.querySelector('.product-story'),viewport=root.querySelector('.story-viewport');
  const chapters=[...root.querySelectorAll('.story-chapter')];
  const dock=document.querySelector('.mobile-apply'),launcher=document.querySelector('.chat-launcher'),header=document.querySelector('#header');
- const aperture=root.querySelector('.story-aperture'),footer=document.querySelector('.footer');
+ const aperture=root.querySelector('.story-aperture'),footer=document.querySelector('.footer'),themeColor=document.querySelector('meta[name="theme-color"]');
  let frame=0,geometry,chapter=-1,lastDock,lastHeroVisible;
  function measure(){
   const w=innerWidth,h=innerHeight,natural=w<1000||reduced.matches||h<650;
   root.classList.toggle('static-story',natural);
   root.querySelectorAll('.device-visual').forEach(el=>el.style.setProperty('--device-scale',String(el.getBoundingClientRect().width/400)));
   geometry={top:root.getBoundingClientRect().top+scrollY,h,natural,storyBottom:root.getBoundingClientRect().bottom+scrollY,chapterTops:chapters.map(el=>el.getBoundingClientRect().top+scrollY),deviceHeight:root.querySelector('.device-visual').getBoundingClientRect().height,deviceWidth:root.querySelector('.device-visual').getBoundingClientRect().width,w,headerHeight:header.clientHeight,surfaces:[...document.querySelectorAll('.tasks-section,.download-section,.footer')].map(el=>({top:el.getBoundingClientRect().top+scrollY,tone:el.matches('.download-section')?'green':'dark'}))};
-  geometry.footerTop=footer.getBoundingClientRect().top+scrollY;
+  const palette=getComputedStyle(document.documentElement);
+  geometry.colors=Object.fromEntries(Object.entries({green:'--brand-field',paper:'--section-paper',mint:'--section-mint',dark:'--section-dark'}).map(([tone,token])=>[tone,palette.getPropertyValue(token).trim()]));
   schedule();
  }
  function paint(){
   frame=0;if(!geometry)return;
   const {top,h,natural}=geometry,rawP=Math.max(0,(scrollY-top)/h),p=Math.min(2,rawP);
+  // Read the footer's current edge before style writes. Font/language changes
+  // and restored scroll positions can move it without changing its own size.
+  const footerEdge=footer.getBoundingClientRect().top;
+  const footerReached=footerEdge<=geometry.headerHeight;
   // Both clipping rectangles share the same center and size. The inner window
   // follows native scrolling while its app content counter-translates. This
   // reproduces the moving aperture without an external SVG mask dependency.
@@ -48,26 +53,29 @@ export function mountProductStory({reduced,onChapterChange}){
   const heroVisible=natural||rawP<.5;
   if(chapter!==next||lastHeroVisible!==heroVisible){chapter=next;lastHeroVisible=heroVisible;onChapterChange?.(chapter,heroVisible);}
   header.classList.toggle('scrolled',scrollY>60);
-  document.documentElement.classList.toggle('footer-scroll',scrollY+geometry.headerHeight>=geometry.footerTop-1);
+  document.documentElement.classList.toggle('footer-scroll',footerReached);
   // Match the existing dark header treatment to every dark page section.
   const surfaceAt=y=>{
    const storyTone=natural?geometry.chapterTops.reduce((tone,chapterTop,i)=>y>=chapterTop?['green','paper','mint'][i]:tone,'green'):['green','paper','mint'][Math.min(2,Math.max(0,Math.floor((y-top)/h)))];
    return geometry.surfaces.reduce((tone,section)=>y>=section.top?section.tone:tone,storyTone);
   };
-  const headerSurface=surfaceAt(scrollY+geometry.headerHeight);
+  const headerSurface=footerReached?'dark':surfaceAt(scrollY+geometry.headerHeight);
   header.classList.toggle('dark-section',headerSurface==='dark');
   if(header.dataset.surface!==headerSurface)header.dataset.surface=headerSurface;
+  const chromeColor=geometry.colors[headerSurface];
+  if(themeColor&&chromeColor&&themeColor.content!==chromeColor)themeColor.content=chromeColor;
   // The header owns signup during the phone story. The bottom dock begins at
   // the task gallery, so it cannot cover a chapter's copy or illustration.
   const showDock=scrollY+geometry.headerHeight>=geometry.storyBottom;
   const dockEdge=scrollY+h-dock.clientHeight;
-  const surface=surfaceAt(dockEdge);
+  const surface=dockEdge-scrollY>=footerEdge?'dark':surfaceAt(dockEdge);
   if(dock.dataset.surface!==surface)dock.dataset.surface=surface;
   if(showDock!==lastDock){lastDock=showDock;dock.classList.toggle('visible',showDock);dock.inert=!showDock;dock.setAttribute('aria-hidden',String(!showDock));launcher.classList.toggle('dock-visible',showDock);launcher.inert=false;launcher.removeAttribute('aria-hidden');}
  }
  function schedule(){if(!frame)frame=requestAnimationFrame(paint);}
  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',()=>{lastDock=undefined;measure();});
  addEventListener('frogku:language',()=>requestAnimationFrame(measure));reduced.addEventListener('change',measure);
+ addEventListener('pageshow',measure);
  const resize=new ResizeObserver(measure);document.querySelectorAll('.device-visual,.chapter-title,.chapter-copy,.tasks-section,.download-section,.faq-section,.footer').forEach(el=>resize.observe(el));
  document.fonts.ready.then(measure);measure();
  function goTo(id){

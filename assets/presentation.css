@@ -433,7 +433,7 @@ html{scroll-padding-top:calc(var(--header-height) + 16px)}
 :root{--content-max:1600px;--section-space:80px}
 .chapter-layout{max-width:var(--content-max)}
 .tasks-section>.section-top,.tasks-section>.task-track,.tasks-section>.task-foot{max-width:calc(var(--content-max) + 2 * var(--gutter));margin-inline:auto;padding-inline:var(--gutter)}
-.footer{padding:var(--section-space) max(var(--gutter),calc((100vw - var(--content-max)) / 2)) calc(var(--dock-height) + env(safe-area-inset-bottom));min-height:0}
+.footer{padding:var(--section-space) max(var(--gutter),calc((100vw - var(--content-max)) / 2)) calc(var(--dock-height) + env(safe-area-inset-bottom));min-height:100svh}
 .footer .faq-section{padding:0 0 var(--section-space);min-height:0;background:transparent;gap:48px;align-items:start;width:100%}
 .footer .faq-intro{position:static}
 .footer .faq-intro h2{color:#F5F5F7}
@@ -585,7 +585,11 @@ html.section-snap.footer-scroll{scroll-snap-type:none!important}
  .product-story:not(.static-story) .story-scroll{position:absolute;left:50%;bottom:20px;translate:-50% 0;pointer-events:auto}
  .product-story:not(.static-story) .story-footer .media-toggle{position:absolute;left:calc(50% + var(--device-width) / 2 + 16px);top:calc(50% + var(--device-width) * 2.165 / 2 - 44px);pointer-events:auto}
  .footer{padding-bottom:0}
- .footer-wordmark{height:min(20vw,480px);overflow:hidden;flex:none}
+ /* Functional content keeps its natural height; the decorative crop fills
+    the remaining screen and can yield space when answers grow. */
+ .footer> :not(.footer-wordmark){flex:none}
+ .footer-wordmark{height:auto;min-height:120px;max-height:min(20vw,480px);overflow:hidden;flex:1 0 0;margin-top:auto}
+ .footer>.legal-note{margin-bottom:24px}
 }
 
 /* Frogku's requested green identity maps through the existing shared controls. */
@@ -687,6 +691,7 @@ html.section-snap.footer-scroll{scroll-snap-type:none!important}
 .tasks-section,.footer{background:var(--section-dark);color:white}
 .header[data-surface=green]{background:var(--brand-field);color:var(--ink);border-bottom-color:#12121218}
 .header[data-surface=mint]{background:var(--section-mint);color:var(--ink);border-bottom-color:#12121218}
+.header[data-surface=dark],html.footer-scroll .header{background:var(--section-dark);color:white;border-bottom-color:#ffffff18}
 .header:is([data-surface=green],[data-surface=mint]) .header-join{background:var(--green-deep);color:white}
 :where(p,li,.form-check){text-wrap:pretty}
 :where(h1,h2,h3),.chapter-copy>p,.chapter-title>p,.section-top-side>p,.download-intro>p,.chapter-footnote,.task-foot>p,.legal-note,.camera-screen-note p,.pay-example p,.sample-card p{text-wrap:balance}

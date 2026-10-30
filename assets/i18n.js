@@ -1,8 +1,8 @@
-import {transitionTheme} from './vendor/theme-transition.js?v=d74b419c1354';
+import {transitionTheme} from './vendor/theme-transition.js?v=27fca7142643';
 let language='id';
 try{const saved=localStorage.getItem('frogku-language');if(['id','en','zh'].includes(saved))language=saved;}catch{}
 if(document.body.classList.contains('legal-page')){const specified=new URLSearchParams(location.search).get('lang');if(['id','en','zh'].includes(specified))language=specified;}
-const dictionaries=await fetch('assets/translations.json?v=d74b419c1354').then(r=>{if(!r.ok)throw new Error('Translations unavailable');return r.json();});
+const dictionaries=await fetch('assets/translations.json?v=27fca7142643').then(r=>{if(!r.ok)throw new Error('Translations unavailable');return r.json();});
 const textSources=new WeakMap(),attributeSources=new WeakMap();
 export const getLang=()=>language;
 export function t(value){

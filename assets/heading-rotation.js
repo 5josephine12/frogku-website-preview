@@ -1,4 +1,4 @@
-import {createContentSwap} from './vendor/surface-motion.js?v=d74b419c1354';
+import {createContentSwap} from './vendor/surface-motion.js?v=27fca7142643';
 
 // Use the shared cancellable text transition; idle/offscreen headings do no work.
 export function mountHeadingRotation(heading,t){

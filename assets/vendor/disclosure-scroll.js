@@ -1,5 +1,5 @@
-import {cardMotionPreference} from './card-motion.js?v=d74b419c1354';
-import {surfaceMotion} from './surface-motion.js?v=d74b419c1354';
+import {cardMotionPreference} from './card-motion.js?v=27fca7142643';
+import {surfaceMotion} from './surface-motion.js?v=27fca7142643';
 
 // Follow the collapsing list's end, preventing browser scroll clamping from
 // dropping readers into the footer. User scrolling always takes precedence.
