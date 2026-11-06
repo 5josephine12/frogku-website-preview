@@ -3,19 +3,21 @@
   "height": 630,
   "duration_seconds": 8,
   "audio": false,
-  "video": "frogku-share-v3.mp4",
-  "poster": "frogku-share-v3.png",
+  "video": "frogku-share-v4.mp4",
+  "poster": "frogku-share-v4.png",
   "brandField": "#58DF35",
+  "canvas": "#121212",
   "colorProfile": "sRGB still / BT.709 video",
   "sources": [
     "../video/task-masak.mp4"
   ],
   "phoneFrame": "phone-frame.png",
   "phoneMarkup": "phone-frame-source.html",
+  "phoneRotationDegrees": -8,
   "artwork": "../frog.svg",
   "fonts": [
     "../fonts/inter-500.woff2",
     "../fonts/inter-600.woff2"
   ],
-  "notes": "The complete homepage phone UI surrounds the same cooking footage used by its Memasak card. Background color is read directly from site.css. Versioned URLs refresh sharing caches."
+  "notes": "Oversized Inter typography on the site’s dark canvas with its exact bright green aperture and an angled rendering of the real homepage phone. The cooking footage moves inside the complete frame; matching still remains the universal image fallback. Versioned URLs refresh sharing caches."
 }
