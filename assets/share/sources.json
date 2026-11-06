@@ -1,17 +1,20 @@
 {
-  "width": 1200,
-  "height": 630,
+  "width": 3600,
+  "height": 1890,
+  "video_width": 1920,
+  "video_height": 1008,
+  "render_scale": 3,
   "duration_seconds": 8,
   "audio": false,
-  "video": "frogku-share-v5.mp4",
-  "poster": "frogku-share-v5.png",
+  "video": "frogku-share-v6.mp4",
+  "poster": "frogku-share-v6.png",
   "brandField": "#58DF35",
   "canvas": "#121212",
   "colorProfile": "sRGB still / BT.709 video",
   "sources": [
     "../video/task-masak.mp4"
   ],
-  "phoneFrame": "phone-frame.png",
+  "phoneFrame": "phone-frame-hires.png",
   "phoneMarkup": "phone-frame-source.html",
   "phoneRotationDegrees": -8,
   "artwork": "../frog.svg",
@@ -19,5 +22,5 @@
     "../fonts/inter-500.woff2",
     "../fonts/inter-600.woff2"
   ],
-  "notes": "Oversized Inter typography on the site’s dark canvas with its exact bright green aperture and an angled rendering of the real homepage phone. The cooking footage moves inside the complete frame; matching still remains the universal image fallback. Versioned URLs refresh sharing caches."
+  "notes": "Three-times-native phone UI and typography, supersampled rotation and a Lanczos-downsampled HD video on the site’s dark canvas with its exact bright green aperture and an angled rendering of the real homepage phone. The cooking footage moves inside the complete frame; matching still remains the universal image fallback. Versioned URLs refresh sharing caches."
 }

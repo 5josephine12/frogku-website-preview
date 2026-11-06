@@ -1,6 +1,6 @@
 <!doctype html><html lang="id"><head><meta charset="utf-8"><base href="../../"><title>Frogku share phone source</title>
 <link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/presentation.css"><link rel="stylesheet" href="assets/vendor/controls.css">
-<script>document.documentElement.dataset.matte=new URLSearchParams(location.search).get('matte')||'preview';</script>
+<script>const captureParams=new URLSearchParams(location.search);document.documentElement.dataset.matte=captureParams.get('matte')||'preview';document.documentElement.style.zoom=String(Math.max(1,Math.min(4,Number(captureParams.get('scale'))||1)));</script>
 <style>
 :root{--matte:var(--brand-field)}:root[data-matte=white]{--matte:#fff}:root[data-matte=black]{--matte:#000}
 html,body{margin:0;width:364px;height:714px;overflow:hidden;background:var(--matte)}

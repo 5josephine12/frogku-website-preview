@@ -1,0 +1,18 @@
+{
+  "frame": {
+    "width": 900,
+    "height": 1950,
+    "radius": 117.855,
+    "paintedHeight": 1948.5
+  },
+  "media": {
+    "x": 54,
+    "y": 617.9296875,
+    "width": 792,
+    "height": 955.1953125
+  },
+  "brandField": "#58DF35",
+  "captureScale": 3,
+  "source": "phone-frame-source.html",
+  "colorProfile": "sRGB"
+}
